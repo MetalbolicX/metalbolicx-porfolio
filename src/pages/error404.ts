@@ -1,10 +1,10 @@
-function error404(): string {
-  const view: string = /*html*/ `
-          <div class="error-404">
-              <h2>Error 404</h2>
-          </div>
-      `;
-  return view;
+function error404(): HTMLDivElement {
+  const div = document.createElement("div");
+  div.className = "error-404";
+  const title = document.createElement("h2");
+  title.textContent = "Error 404";
+  div.appendChild(title);
+  return div;
 }
 
 export default error404;

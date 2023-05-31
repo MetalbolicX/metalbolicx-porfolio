@@ -5,9 +5,8 @@ import error404 from "../pages/error404";
 import getHash from "../utils/gethash";
 import resolveRoutes from "../utils/resolveroutes";
 
-
-type RouteHandler = () => Promise<string>;
-type ContactHandler = () => string;
+type RouteHandler = () => Promise<HTMLDivElement>;
+type ContactHandler = () => HTMLDivElement;
 
 interface Routes {
   [key: string]: ContactHandler | RouteHandler;
@@ -26,8 +25,12 @@ async function router() {
   let render: RouteHandler | ContactHandler = routes[route] || error404;
 
   const content: HTMLElement | null = null || document.getElementById("content");
-  // content!.innerHTML = await (typeof render === "function" ? render() : render) ?? "";
-  content!.innerHTML = await render() ?? "";
+  // Delete the previous nodes of the content in the HTML
+  while (content?.firstChild) {
+    content.firstChild.remove();
+  }
+  // Add the content to the HTML
+  content?.append(await render());
 }
 
 export default router;
