@@ -20,9 +20,9 @@ const routes: Routes = {
 
 async function router() {
 
-  let hash: string = getHash();
-  let route: string = await resolveRoutes(hash);
-  let render: RouteHandler | ContactHandler = routes[route] || error404;
+  const hash: string = getHash();
+  const route: string = resolveRoutes(hash);
+  const render: RouteHandler | ContactHandler = routes[route] || error404;
 
   const content: HTMLElement | null = null || document.getElementById("content");
   // Delete the previous nodes of the content in the HTML
