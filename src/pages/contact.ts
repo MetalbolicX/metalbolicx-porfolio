@@ -1,4 +1,7 @@
-function contact(): HTMLDivElement {
+/**
+ * Create the information for contact.
+ */
+async function createContact(): Promise<HTMLDivElement> {
   const contact = document.createElement("div");
   contact.className = "contact";
   const view: string = /*html*/ `
@@ -9,4 +12,4 @@ function contact(): HTMLDivElement {
   return contact;
 }
 
-export default contact;
+export default createContact;

@@ -1,0 +1,1 @@
+export const sectionsButtons: string[] = ["home", "about", "portfolio", "contact"];

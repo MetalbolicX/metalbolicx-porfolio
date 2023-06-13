@@ -1,4 +1,7 @@
-function error404(): HTMLDivElement {
+/**
+ * Creates the element with the error message 404.
+ */
+async function createError404(): Promise<HTMLDivElement> {
   const div = document.createElement("div");
   div.className = "error-404";
   const title = document.createElement("h2");
@@ -7,4 +10,4 @@ function error404(): HTMLDivElement {
   return div;
 }
 
-export default error404;
+export default createError404;

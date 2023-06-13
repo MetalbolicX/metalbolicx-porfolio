@@ -1,36 +1,38 @@
-import home from "../pages/home";
-import character from "../pages/character";
-import contact from "../pages/contact";
-import error404 from "../pages/error404";
+import createHome from "../pages/home";
+import createContact from "../pages/contact";
+import createError404 from "../pages/error404";
 import getHash from "../utils/gethash";
 import resolveRoutes from "../utils/resolveroutes";
+import { sectionsButtons } from "../utils/constants";
 
 type RouteHandler = () => Promise<HTMLDivElement>;
-type ContactHandler = () => HTMLDivElement;
-
 interface Routes {
-  [key: string]: ContactHandler | RouteHandler;
+  [key: string]: RouteHandler;
 }
 
 const routes: Routes = {
-  "/": home,
-  "/:id": character,
-  "/contact": contact,
+  "/": createHome,
+  "/home": createHome,
+  "/contact": createContact,
 };
 
 async function router() {
-
   const hash: string = getHash();
   const route: string = resolveRoutes(hash);
-  const render: RouteHandler | ContactHandler = routes[route] || error404;
+  const render: RouteHandler = routes[route] || createError404;
+  console.log(route);
+  // Delete previous info
+  sectionsButtons.forEach((section: string) => {
+    const container = document.getElementById(section);
+    while (container?.firstChild) {
+      container.firstChild.remove();
+    }
+  });
 
-  const content: HTMLElement | null = null || document.getElementById("content");
-  // Delete the previous nodes of the content in the HTML
-  while (content?.firstChild) {
-    content.firstChild.remove();
-  }
-  // Add the content to the HTML
-  content?.append(await render());
+  const contentAdder: HTMLElement | null =
+    null ||
+    document.getElementById(route.length === 1 ? "home" : route.slice(1));
+  contentAdder?.append(await render());
 }
 
 export default router;
