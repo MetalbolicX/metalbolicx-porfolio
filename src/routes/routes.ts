@@ -6,6 +6,8 @@ import createPortfolio from "../pages/portfolio";
 import getHash from "../utils/gethash";
 import resolveRoutes from "../utils/resolveroutes";
 import { sectionsButtons } from "../utils/constants";
+import coloringButton from "../utils/coloringbutton";
+import activateSection from "../utils/activesection";
 
 type RouteHandler = () => Promise<HTMLDivElement>;
 interface Routes {
@@ -32,10 +34,18 @@ async function router() {
       container.firstChild.remove();
     }
   });
+
+  // Which id in the HTML will be selected
+  const selectedId: string = route === "/" ? "home" : route.slice(1);
+  // Color the selected button sections
+  coloringButton(selectedId);
+  // Make active section
+  activateSection(selectedId);
+  
   // Add the information for the section selected
   const content: HTMLElement | null =
     null ||
-    document.getElementById(route === "/" ? "home" : route.slice(1));
+    document.getElementById(selectedId);
   content?.append(await render());
 
 }
