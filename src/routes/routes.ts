@@ -1,13 +1,14 @@
+import createError404 from "../pages/error404";
 import createHome from "../pages/home";
 import createContact from "../pages/contact";
 import createAbout from "../pages/about";
-import createError404 from "../pages/error404";
 import createPortfolio from "../pages/portfolio";
 import getHash from "../utils/gethash";
 import resolveRoutes from "../utils/resolveroutes";
 import { sectionsButtons } from "../utils/constants";
 import coloringButton from "../utils/coloringbutton";
 import activateSection from "../utils/activesection";
+import selectId from "../utils/selectid";
 
 type RouteHandler = () => Promise<HTMLDivElement>;
 interface Routes {
@@ -22,7 +23,10 @@ const routes: Routes = {
   "/portfolio": createPortfolio,
 };
 
-async function router() {
+/**
+ * Add the HTML content according to the url hash.
+ */
+async function router(): Promise<void> {
   // Get the path of the url
   const hash: string = getHash();
   const route: string = resolveRoutes(hash);
@@ -34,9 +38,8 @@ async function router() {
       container.firstChild.remove();
     }
   });
-
   // Which id in the HTML will be selected
-  const selectedId: string = route === "/" ? "home" : route.slice(1);
+  const selectedId: string = selectId(route);
   // Color the selected button sections
   coloringButton(selectedId);
   // Make active section
