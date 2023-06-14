@@ -1,5 +1,5 @@
 {
-  "name": "portfolio-single-page-application",
+  "name": "metalbolicx-porfolio",
   "version": "1.0.0",
   "description": "My personal porfolio website.",
   "main": "index.js",
@@ -9,9 +9,10 @@
     "start": "node ./server/server.js"
   },
   "keywords": [
-    "Javascript",
+    "JavaScript",
     "HTML",
-    "CSS"
+    "CSS",
+    "TypeScript"
   ],
   "author": {
     "name": "José Martínez Santana",
