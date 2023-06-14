@@ -5,7 +5,7 @@ import createAbout from "../pages/about";
 import createPortfolio from "../pages/portfolio";
 import getHash from "../utils/gethash";
 import resolveRoutes from "../utils/resolveroutes";
-import { sectionsButtons } from "../utils/constants";
+import { sections } from "../utils/constants";
 import coloringButton from "../utils/coloringbutton";
 import activateSection from "../utils/activesection";
 import selectId from "../utils/selectid";
@@ -32,7 +32,7 @@ async function router(): Promise<void> {
   const route: string = resolveRoutes(hash);
   const render: RouteHandler = routes[route] || createError404;
   // Delete previous info of the DOM
-  sectionsButtons.forEach((section: string) => {
+  sections.forEach((section: string) => {
     const container = document.getElementById(section);
     while (container?.firstChild) {
       container.firstChild.remove();
