@@ -1,3 +1,4 @@
+import { cvUrl } from "../utils/constants";
 /**
  * Create the about section of the web page.
  */
@@ -22,7 +23,7 @@ async function createAbout(): Promise<HTMLDivElement> {
           necessitatibus deleniti eum soluta.
         </p>
         <div class="btn-con">
-          <a href="#" class="main-btn">
+          <a href="${cvUrl}" class="main-btn">
           <span class="btn-text">Download CV</span>
           <span class="btn-icon"><i class="fas fa-download"></i></span>
           </a>

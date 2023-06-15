@@ -11,3 +11,5 @@ export const navIcons: string[] = [
   "briefcase",
   "envelope-open",
 ];
+
+export const cvUrl: string = "https://drive.google.com/file/d/1KJUYhwVzopvN4IQnaRUfr1YGqlBCfeQ6/view?usp=sharing";

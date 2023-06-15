@@ -1,3 +1,4 @@
+import { cvUrl} from "../utils/constants";
 /**
  * Create the information for contact.
  */
@@ -78,30 +79,36 @@ async function createContact(): Promise<HTMLDivElement> {
         </div>
       </div>
       <div class="right-contact">
-        <form action="" class="contact-form">
+        <form  action="https://formspree.io/f/xdovqgbr" method="POST" class="contact-form">
           <div class="input-control i-c-2">
-            <input type="text" required placeholder="Your name" />
-            <input type="email" required placeholder="Your email" />
+            <input type="text" name="name" required placeholder="Your name" />
+            <input type="email" name="email" required placeholder="Your email" />
           </div>
           <div class="input-control">
-            <input type="text" required placeholder="Enter subject" />
+            <input type="text" name="subject" required placeholder="Enter subject" />
           </div>
           <div class="input-control">
             <textarea
-              name=""
+              name="message"
               id=""
               cols="15"
               rows="8"
-              placeholder="Message Here..."
+              placeholder="Write your message here..."
             ></textarea>
           </div>
           <div class="submit-btn">
-            <a href="#" class="main-btn">
+            <a href="${cvUrl}" class="main-btn">
               <span class="btn-text">Download CV</span>
               <span class="btn-icon"
                 ><i class="fas fa-download"></i
               ></span>
             </a>
+          </div>
+          <div class="submit-btn">
+            <button class="email-btn" type="submit">
+              <span class="btn-text">Submit</span>
+              <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+            </button>
           </div>
         </form>
       </div>
