@@ -1,4 +1,4 @@
-import { cvUrl} from "../utils/constants";
+import { urls, personalInfoContact} from "../utils/constants";
 /**
  * Create the information for contact.
  */
@@ -13,67 +13,63 @@ async function createContact(): Promise<HTMLDivElement> {
       <div class="left-contact">
         <h4>Contact me here</h4>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. In,
-          laborum numquam? Quam excepturi perspiciatis quas quasi.
+        Feel free to reach out to me for any inquiries or collaboration opportunities.
         </p>
         <div class="contact-info">
           <div class="contact-item">
             <div class="icon">
               <i class="fas fa-map-marker-alt"></i>
-              <span>Location</span>
+              <span>Location:</span>
             </div>
-            <p>: London, united Kingdom</p>
+            <p>${personalInfoContact.location}</p>
           </div>
           <div class="contact-item">
             <div class="icon">
               <i class="fas fa-envelope"></i>
-              <span>Email</span>
+              <span>Email:</span>
             </div>
             <p>
-              <span>: maclinzuniversal@gmail.com</span>
+              <span>${personalInfoContact.email}</span>
             </p>
           </div>
           <div class="contact-item">
             <div class="icon">
               <i class="fas fa-user-graduate"></i>
-              <span>Education</span>
+              <span>Education:</span>
             </div>
             <p>
-              <span>: Sussex University, East Sussex</span>
+              <span>${personalInfoContact.education}</span>
             </p>
           </div>
           <div class="contact-item">
             <div class="icon">
-              <i class="fas fa-user-graduate"></i>
-              <span>Mobile Number</span>
+              <i class="fas fa-phone"></i>
+              <span>Mobile Number:</span>
             </div>
             <p>
-              <span>: 07522670617</span>
+              <span>${personalInfoContact.phone}</span>
             </p>
           </div>
           <div class="contact-item">
             <div class="icon">
               <i class="fas fa-globe-africa"></i>
-              <span>Languages</span>
+              <span>Languages:</span>
             </div>
             <p>
-              <span>: Afrikaans, English, Spanish</span>
+              <span>${personalInfoContact.languages}</span>
             </p>
           </div>
         </div>
         <div class="contact-icons">
           <div class="contact-icon">
-            <a href="www.facebook.com" target="_blank">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" target="_blank">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" target="_blank">
+            <a href="${urls.github}" target="_blank">
               <i class="fab fa-github"></i>
             </a>
-            <a href="#" target="_blank">
-              <i class="fab fa-youtube"></i>
+            <a href="${urls.linkedin}" target="_blank">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="${urls.resume}" target="_blank">
+              <i class="fa-regular fa-address-card"></i>
             </a>
           </div>
         </div>
@@ -93,19 +89,12 @@ async function createContact(): Promise<HTMLDivElement> {
               id=""
               cols="15"
               rows="8"
+              required
               placeholder="Write your message here..."
             ></textarea>
           </div>
           <div class="submit-btn">
-            <a href="${cvUrl}" class="main-btn">
-              <span class="btn-text">Download CV</span>
-              <span class="btn-icon"
-                ><i class="fas fa-download"></i
-              ></span>
-            </a>
-          </div>
-          <div class="submit-btn">
-            <button class="email-btn" type="submit">
+            <button class="main-btn" type="submit">
               <span class="btn-text">Submit</span>
               <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
             </button>
