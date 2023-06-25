@@ -1,147 +1,66 @@
+import { projectsUrls } from "../utils/constants";
+
 /**
  * Create the portfolio section of the web page.
  */
 async function createPortfolio(): Promise<HTMLDivElement> {
   const container = document.createElement("div");
-  container.className = "portfolio-container";
+  container.classList.add("portfolio-container");
   const view: string = /*html*/ `
     <div class="main-title">
       <h2>My <span>Portfolio</span><span class="bg-text">My Work</span></h2>
     </div>
     <p class="port-text">
-      Here is some of my work that I've done in various programming
-      languages.
+      Here is some of my work that I've done professionally.
     </p>
     <div class="portfolios">
       <div class="portfolio-item">
         <div class="image">
-          <img src="img/port1.jpg" alt="" />
+          <img src="https://cdn.pixabay.com/photo/2021/05/11/17/21/charts-6246450_1280.png" alt="D3 chart library" />
         </div>
         <div class="hover-items">
-          <h3>Project Source</h3>
+          <h3>
+            <a href="#">
+              D3 js library for common data visualization charts
+            </a>
+          </h3>
           <div class="icons">
-            <a href="#" class="icon">
+            <a href="${projectsUrls.d3jslibrary}" class="icon">
             <i class="fab fa-github"></i>
-            </a>
-            <a href="#" class="icon">
-            <i class="fab fa-behance"></i>
-            </a>
-            <a href="#" class="icon">
-            <i class="fab fa-youtube"></i>
             </a>
           </div>
         </div>
       </div>
       <div class="portfolio-item">
         <div class="image">
-          <img src="img/port2.jpg" alt="" />
+          <img src="https://cdn.pixabay.com/photo/2020/06/25/14/21/server-icons-5339848_1280.png" alt="Go web sever" />
         </div>
         <div class="hover-items">
-          <h3>Project Source</h3>
+          <h3>
+            <a href="#">
+              Go web server
+            </a>
+          </h3>
           <div class="icons">
-            <a href="#" class="icon">
+            <a href="${projectsUrls.gowebserver}" class="icon">
             <i class="fab fa-github"></i>
-            </a>
-            <a href="#" class="icon">
-            <i class="fab fa-behance"></i>
-            </a>
-            <a href="#" class="icon">
-            <i class="fab fa-youtube"></i>
             </a>
           </div>
         </div>
       </div>
       <div class="portfolio-item">
         <div class="image">
-          <img src="img/port3.jpg" alt="" />
+          <img src="${projectsUrls.materialsscience}" alt="Journal publication" />
         </div>
         <div class="hover-items">
-          <h3>Project Source</h3>
+          <h3>
+            <a href="#">
+              Master research Journal publication
+            </a>
+          </h3>
           <div class="icons">
-            <a href="#" class="icon">
-            <i class="fab fa-github"></i>
-            </a>
-            <a href="#" class="icon">
-            <i class="fab fa-behance"></i>
-            </a>
-            <a href="#" class="icon">
-            <i class="fab fa-youtube"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <div class="image">
-          <img src="img/port4.jpg" alt="" />
-        </div>
-        <div class="hover-items">
-          <h3>Project Source</h3>
-          <div class="icons">
-            <a href="#" class="icon">
-            <i class="fab fa-github"></i>
-            </a>
-            <a href="#" class="icon">
-            <i class="fab fa-behance"></i>
-            </a>
-            <a href="#" class="icon">
-            <i class="fab fa-youtube"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <div class="image">
-          <img src="img/port5.jpg" alt="" />
-        </div>
-        <div class="hover-items">
-          <h3>Project Source</h3>
-          <div class="icons">
-            <a href="#" class="icon">
-            <i class="fab fa-github"></i>
-            </a>
-            <a href="#" class="icon">
-            <i class="fab fa-behance"></i>
-            </a>
-            <a href="#" class="icon">
-            <i class="fab fa-youtube"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <div class="image">
-          <img src="img/port2.jpg" alt="" />
-        </div>
-        <div class="hover-items">
-          <h3>Project Source</h3>
-          <div class="icons">
-            <a href="#" class="icon">
-            <i class="fab fa-github"></i>
-            </a>
-            <a href="#" class="icon">
-            <i class="fab fa-behance"></i>
-            </a>
-            <a href="#" class="icon">
-            <i class="fab fa-youtube"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <div class="image">
-          <img src="img/port7.jpg" alt="" />
-        </div>
-        <div class="hover-items">
-          <h3>Project Source</h3>
-          <div class="icons">
-            <a href="#" class="icon">
-            <i class="fab fa-github"></i>
-            </a>
-            <a href="#" class="icon">
-            <i class="fab fa-behance"></i>
-            </a>
-            <a href="#" class="icon">
-            <i class="fab fa-youtube"></i>
+            <a href="" class="icon">
+            <i class="fa-brands fa-researchgate"></i>
             </a>
           </div>
         </div>

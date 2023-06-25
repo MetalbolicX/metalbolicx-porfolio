@@ -35,3 +35,13 @@ export const personalInfoContact: {
   phone: "+527225126091",
   languages: "Spanish (native), English",
 };
+
+export const projectsUrls: {
+  d3jslibrary: string,
+  gowebserver: string,
+  materialsscience: string,
+} = {
+  d3jslibrary: `${urls.github}/common-charts-js`,
+  gowebserver: `${urls.github}/vanilla-go-webserver`,
+  materialsscience: "https://www.sciencedirect.com/science/article/abs/pii/S0254058421005265",
+};

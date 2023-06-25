@@ -9,6 +9,7 @@ import { sections } from "../utils/constants";
 import coloringButton from "../utils/coloringbutton";
 import activateSection from "../utils/activesection";
 import selectId from "../utils/selectid";
+import createJsScript from "../js/scriptJs";
 
 type RouteHandler = () => Promise<HTMLDivElement>;
 interface Routes {
@@ -44,13 +45,13 @@ async function router(): Promise<void> {
   coloringButton(selectedId);
   // Make active section
   activateSection(selectedId);
-  
   // Add the information for the section selected
   const content: HTMLElement | null =
     null ||
     document.getElementById(selectedId);
   content?.append(await render());
-
+  // Add JavaScript in the script tag
+  createJsScript(selectedId);
 }
 
 export default router;
