@@ -45,3 +45,27 @@ export const projectsUrls: {
   gowebserver: `${urls.github}/vanilla-go-webserver`,
   materialsscience: "https://www.sciencedirect.com/science/article/abs/pii/S0254058421005265",
 };
+
+export const technologiesKnown: {
+  html5: string,
+  css3: string,
+  javascript: string,
+  d3js: string,
+  typescript: string,
+  go: string,
+  python: string,
+  mysql: string,
+  nodejs: string,
+  git: string
+} = {
+  html5: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+  css3: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+  javascript: "https://developer.mozilla.org/en-US/docs/Web/javascript",
+  d3js: "https://d3js.org/",
+  typescript: "https://www.typescriptlang.org/",
+  go: "https://go.dev/",
+  python: "https://www.python.org/",
+  mysql: "https://www.mysql.com/",
+  nodejs: "https://www.nodejs.org/",
+  git: "https://github.com/"
+};

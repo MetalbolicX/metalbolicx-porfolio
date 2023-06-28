@@ -1,4 +1,4 @@
-import { urls } from "../utils/constants";
+import { urls, technologiesKnown } from "../utils/constants";
 /**
  * Create the about section of the web page.
  */
@@ -7,6 +7,7 @@ async function createAbout(): Promise<HTMLElement> {
   container.classList.add("container");
   container.classList.add("about");
   container.classList.add("active");
+  const technologies: string = technologiesUsedElements();
   const view: string = /*html*/ `
     <div class="main-title">
       <h2>About <span>me</span><span class="bg-text">my stats</span></h2>
@@ -71,61 +72,13 @@ async function createAbout(): Promise<HTMLElement> {
       </div>
     </div>
     <div class="about-stats">
-      <h4 class="stat-title">My Skills</h4>
-      <div class="progress-bars">
-        <div class="progress-bar">
-          <p class="prog-title">html5</p>
-          <div class="progress-con">
-            <p class="prog-text">80%</p>
-            <div class="progress">
-              <span class="html"></span>
-            </div>
-          </div>
+      <h4 class="stat-title">Technologies in which I am conformtable to work with</h4>
+      <div class="logos">
+        <div class="logos-slide">
+          ${technologies}
         </div>
-        <div class="progress-bar">
-          <p class="prog-title">css3</p>
-          <div class="progress-con">
-            <p class="prog-text">95%</p>
-            <div class="progress">
-              <span class="css"></span>
-            </div>
-          </div>
-        </div>
-        <div class="progress-bar">
-          <p class="prog-title">javascript</p>
-          <div class="progress-con">
-            <p class="prog-text">75%</p>
-            <div class="progress">
-              <span class="js"></span>
-            </div>
-          </div>
-        </div>
-        <div class="progress-bar">
-          <p class="prog-title">ReactJS</p>
-          <div class="progress-con">
-            <p class="prog-text">75%</p>
-            <div class="progress">
-              <span class="react"></span>
-            </div>
-          </div>
-        </div>
-        <div class="progress-bar">
-          <p class="prog-title">NodeJS</p>
-          <div class="progress-con">
-            <p class="prog-text">87%</p>
-            <div class="progress">
-              <span class="node"></span>
-            </div>
-          </div>
-        </div>
-        <div class="progress-bar">
-          <p class="prog-title">Python</p>
-          <div class="progress-con">
-            <p class="prog-text">70%</p>
-            <div class="progress">
-              <span class="python"></span>
-            </div>
-          </div>
+        <div class="logos-slide">
+          ${technologies}
         </div>
       </div>
     </div>
@@ -203,3 +156,14 @@ async function createAbout(): Promise<HTMLElement> {
 }
 
 export default createAbout;
+
+/**
+ * Adds the content to about-stats container of the technologies I already know.
+ */
+function technologiesUsedElements(): string {
+  return Object.entries(technologiesKnown).map(([key, value]) => /*html*/ `
+    <a href="${value}" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${key}/${key}-original.svg" alt="${key}"/>
+    </a>
+  `).join("");
+}

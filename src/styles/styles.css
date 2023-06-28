@@ -294,73 +294,37 @@ section {
 }
 
 .about-stats {
-  padding-bottom: 4rem;
+  padding-bottom: 2.5rem;
 }
 
-.about-stats .progress-bars {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 2rem;
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
-.about-stats .progress-bars .progress-bar {
-  display: flex;
-  flex-direction: column;
+.logos {
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-.about-stats .progress-bars .progress-bar .prog-title {
-  text-transform: uppercase;
-  font-weight: 500;
+.logos-slide {
+  display: inline-block;
+  animation: 20s slide infinite linear;
 }
 
-.about-stats .progress-bars .progress-bar .progress-con {
-  display: flex;
-  align-items: center;
-}
-.about-stats .progress-bars .progress-bar .progress-con .prog-text {
-  color: var(--color-grey-2);
+.logos:hover .logos-slide {
+  animation-play-state: paused;
 }
 
-.about-stats .progress-bars .progress-bar .progress-con .progress {
-  width: 100%;
-  height: 0.45rem;
-  background-color: var(--color-grey-4);
-  margin-left: 1rem;
-  position: relative;
-}
-
-.about-stats .progress-bars .progress-bar .progress-con .progress span {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background-color: var(--color-secondary);
-  transition: all 0.4s ease-in-out;
-  width: 60%;
-}
-
-.about-stats .progress-bars .progress-bar .progress-con .progress .html {
-  width: 80%;
-}
-
-.about-stats .progress-bars .progress-bar .progress-con .progress .css {
-  width: 95%;
-}
-
-.about-stats .progress-bars .progress-bar .progress-con .progress .js {
-  width: 75%;
-}
-
-.about-stats .progress-bars .progress-bar .progress-con .progress .react {
-  width: 60%;
-}
-
-.about-stats .progress-bars .progress-bar .progress-con .progress .node {
-  width: 87%;
-}
-
-.about-stats .progress-bars .progress-bar .progress-con .progress .python {
-  width: 70%;
+.logos-slide img {
+  height: 3em;
+  margin: 0 2em;
+  width: 12em;
+  height: 12em;
 }
 
 .stat-title {
