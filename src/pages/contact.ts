@@ -2,9 +2,10 @@ import { urls, personalInfoContact} from "../utils/constants";
 /**
  * Create the information for contact.
  */
-async function createContact(): Promise<HTMLDivElement> {
-  const contact = document.createElement("div");
-  contact.className = "contact-container";
+async function createContact(): Promise<HTMLElement> {
+  const contact: HTMLElement = document.createElement("section");
+  contact.classList.add("container");
+  contact.classList.add("contact");
   const view: string = /*html*/ `
     <div class="main-title">
       <h2>Contact <span>Me</span><span class="bg-text">Contact</span></h2>
@@ -78,7 +79,7 @@ async function createContact(): Promise<HTMLDivElement> {
         <form  action="https://formspree.io/f/xdovqgbr" method="POST" class="contact-form">
           <div class="input-control i-c-2">
             <input type="text" name="name" required placeholder="Your name" />
-            <input type="email" name="email" required placeholder="Your email" />
+            <input type="email" name="email" pattern="[a-z0-9][a-z0-9-_\.]+@([a-z]|[a-z0-9]?[a-z0-9-]+[a-z0-9])\.[a-z0-9]{2,10}(?:\.[a-z]{2,10})?" title="Invalid email address" required placeholder="Your email" />
           </div>
           <div class="input-control">
             <input type="text" name="subject" required placeholder="Enter subject" />

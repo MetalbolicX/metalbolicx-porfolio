@@ -5,13 +5,11 @@ import createAbout from "../pages/about";
 import createPortfolio from "../pages/portfolio";
 import getHash from "../utils/gethash";
 import resolveRoutes from "../utils/resolveroutes";
-import { sections } from "../utils/constants";
 import coloringButton from "../utils/coloringbutton";
-import activateSection from "../utils/activesection";
 import selectId from "../utils/selectid";
-import createJsScript from "../js/scriptJs";
+// import createJsScript from "../js/scriptJs";
 
-type RouteHandler = () => Promise<HTMLDivElement>;
+type RouteHandler = () => Promise<HTMLElement>;
 interface Routes {
   [key: string]: RouteHandler;
 }
@@ -33,25 +31,16 @@ async function router(): Promise<void> {
   const route: string = resolveRoutes(hash);
   const render: RouteHandler = routes[route] || createError404;
   // Delete previous info of the DOM
-  sections.forEach((section: string) => {
-    const container = document.getElementById(section);
-    while (container?.firstChild) {
-      container.firstChild.remove();
-    }
-  });
+  const mainContainer: HTMLElement | null = document.querySelector(".main-container");
+  mainContainer?.firstElementChild?.remove();
   // Which id in the HTML will be selected
   const selectedId: string = selectId(route);
   // Color the selected button sections
   coloringButton(selectedId);
-  // Make active section
-  activateSection(selectedId);
-  // Add the information for the section selected
-  const content: HTMLElement | null =
-    null ||
-    document.getElementById(selectedId);
-  content?.append(await render());
+  // Add the content on the web page
+  mainContainer?.append(await render());
   // Add JavaScript in the script tag
-  createJsScript(selectedId);
+  // createJsScript(selectedId);
 }
 
 export default router;

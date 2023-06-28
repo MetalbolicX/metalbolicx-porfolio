@@ -2,9 +2,10 @@ import { urls } from "../utils/constants";
 /**
  * Create the about section of the web page.
  */
-async function createAbout(): Promise<HTMLDivElement> {
-  const container = document.createElement("div");
-  container.className = "about-container";
+async function createAbout(): Promise<HTMLElement> {
+  const container: HTMLElement = document.createElement("section");
+  container.classList.add("container");
+  container.classList.add("about");
   const view: string = /*html*/ `
     <div class="main-title">
       <h2>About <span>me</span><span class="bg-text">my stats</span></h2>
