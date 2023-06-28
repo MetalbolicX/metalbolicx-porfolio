@@ -6,6 +6,7 @@ async function createHome(): Promise<HTMLElement> {
   const container: HTMLElement = document.createElement("section");
   container.classList.add("home");
   container.classList.add("container");
+  container.classList.add("active");
   const view: string = /*html*/ `
     <div class="home-content">
       <div class="left-home">

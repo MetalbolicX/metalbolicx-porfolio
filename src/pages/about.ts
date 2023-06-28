@@ -6,6 +6,7 @@ async function createAbout(): Promise<HTMLElement> {
   const container: HTMLElement = document.createElement("section");
   container.classList.add("container");
   container.classList.add("about");
+  container.classList.add("active");
   const view: string = /*html*/ `
     <div class="main-title">
       <h2>About <span>me</span><span class="bg-text">my stats</span></h2>

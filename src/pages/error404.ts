@@ -5,6 +5,7 @@ async function createError404(): Promise<HTMLElement> {
   const errorContainer: HTMLElement = document.createElement("section");
   errorContainer.classList.add("container");
   errorContainer.classList.add("error-404");
+  errorContainer.classList.add("active");
   const view: string = /*html*/ `
     <nav class="shelf">
       <a class="book home-page">Home page</a>

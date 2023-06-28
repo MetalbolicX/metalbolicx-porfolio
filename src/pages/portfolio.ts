@@ -7,6 +7,7 @@ async function createPortfolio(): Promise<HTMLElement> {
   const container: HTMLElement = document.createElement("section");
   container.classList.add("portfolio");
   container.classList.add("container");
+  container.classList.add("active");
   const view: string = /*html*/ `
     <div class="portfolio-container">
       <div class="main-title">

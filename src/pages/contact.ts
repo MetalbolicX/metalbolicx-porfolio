@@ -6,6 +6,7 @@ async function createContact(): Promise<HTMLElement> {
   const contact: HTMLElement = document.createElement("section");
   contact.classList.add("container");
   contact.classList.add("contact");
+  contact.classList.add("active");
   const view: string = /*html*/ `
     <div class="main-title">
       <h2>Contact <span>Me</span><span class="bg-text">Contact</span></h2>
