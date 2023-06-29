@@ -28,7 +28,7 @@ async function createPortfolio(): Promise<HTMLElement> {
               </a>
             </h3>
             <div class="icons">
-              <a href="${projectsUrls.d3jslibrary}" class="icon">
+              <a href="${projectsUrls.d3jslibrary}" target="_blank" class="icon">
               <i class="fab fa-github"></i>
               </a>
             </div>
@@ -45,7 +45,7 @@ async function createPortfolio(): Promise<HTMLElement> {
               </a>
             </h3>
             <div class="icons">
-              <a href="${projectsUrls.gowebserver}" class="icon">
+              <a href="${projectsUrls.gowebserver}" target="_blank" class="icon">
               <i class="fab fa-github"></i>
               </a>
             </div>
@@ -62,7 +62,7 @@ async function createPortfolio(): Promise<HTMLElement> {
               </a>
             </h3>
             <div class="icons">
-              <a href="${projectsUrls.materialsscience}" class="icon">
+              <a href="${projectsUrls.materialsscience}" target="_blank" class="icon">
               <i class="fa-brands fa-researchgate"></i>
               </a>
             </div>
