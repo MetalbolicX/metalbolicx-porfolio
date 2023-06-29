@@ -1,9 +1,4 @@
-export const sections: string[] = [
-  "home",
-  "about",
-  "portfolio",
-  "contact",
-];
+export const sections: string[] = ["home", "about", "portfolio", "contact"];
 
 export const navIcons: string[] = [
   "home",
@@ -13,21 +8,23 @@ export const navIcons: string[] = [
 ];
 
 export const urls: {
-  resume: string,
-  github: string,
-  linkedin: string,
+  resume: string;
+  github: string;
+  linkedin: string;
 } = {
-  resume: "https://drive.google.com/file/d/1KJUYhwVzopvN4IQnaRUfr1YGqlBCfeQ6/view?usp=sharing",
+  resume:
+    "https://drive.google.com/file/d/1KJUYhwVzopvN4IQnaRUfr1YGqlBCfeQ6/view?usp=sharing",
   github: "https://github.com/MetalbolicX",
-  linkedin: "https://www.linkedin.com/in/jos%C3%A9-mart%C3%ADnez-santana-340bab216/",
+  linkedin:
+    "https://www.linkedin.com/in/jos%C3%A9-mart%C3%ADnez-santana-340bab216/",
 };
 
 export const personalInfoContact: {
-  location: string,
-  email: string,
-  education: string,
-  phone: string,
-  languages: string,
+  location: string;
+  email: string;
+  education: string;
+  phone: string;
+  languages: string;
 } = {
   location: "State of Mexico, Mexico",
   email: "jose.martinez.santana@gmail.com",
@@ -37,35 +34,68 @@ export const personalInfoContact: {
 };
 
 export const projectsUrls: {
-  d3jslibrary: string,
-  gowebserver: string,
-  materialsscience: string,
+  d3jslibrary: string;
+  gowebserver: string;
+  materialsscience: string;
 } = {
   d3jslibrary: `${urls.github}/common-charts-js`,
   gowebserver: `${urls.github}/vanilla-go-webserver`,
-  materialsscience: "https://www.sciencedirect.com/science/article/abs/pii/S0254058421005265",
+  materialsscience:
+    "https://www.sciencedirect.com/science/article/abs/pii/S0254058421005265",
 };
 
+
+const devIconUrl: string = [
+  "https://cdn.jsdelivr.net",
+  "gh",
+  "devicons",
+  "devicon",
+  "icons",
+].join("/");
+
 export const technologiesKnown: {
-  html5: string,
-  css3: string,
-  javascript: string,
-  d3js: string,
-  typescript: string,
-  go: string,
-  python: string,
-  mysql: string,
-  nodejs: string,
-  git: string
-} = {
-  html5: "https://developer.mozilla.org/en-US/docs/Web/HTML",
-  css3: "https://developer.mozilla.org/en-US/docs/Web/CSS",
-  javascript: "https://developer.mozilla.org/en-US/docs/Web/javascript",
-  d3js: "https://d3js.org/",
-  typescript: "https://www.typescriptlang.org/",
-  go: "https://go.dev/",
-  python: "https://www.python.org/",
-  mysql: "https://www.mysql.com/",
-  nodejs: "https://www.nodejs.org/",
-  git: "https://github.com/"
-};
+  techName: string;
+  orgUrl: string;
+  iconUrl: string;
+}[] = [
+  {
+    techName: "html5",
+    orgUrl: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+    iconUrl: `${devIconUrl}/html5/html5-original.svg`,
+  },
+  {
+    techName: "css3",
+    orgUrl: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+    iconUrl: `${devIconUrl}/css3/css3-original.svg`,
+  },
+  {
+    techName: "javascript",
+    orgUrl: "https://developer.mozilla.org/en-US/docs/Web/javascript",
+    iconUrl: `${devIconUrl}/javascript/javascript-original.svg`,
+  },
+  {
+    techName: "d3js",
+    orgUrl: "https://d3js.org",
+    iconUrl: `${devIconUrl}/d3js/d3js-original.svg`,
+  },
+  {
+    techName: "typescript",
+    orgUrl: "https://www.typescriptlang.org/",
+    iconUrl: `${devIconUrl}/typescript/typescript-original.svg`,
+  },
+  {
+    techName: "golang",
+    orgUrl: "https://go.dev",
+    iconUrl: `${devIconUrl}/go/go-original.svg`,
+  },
+  {
+    techName: "python",
+    orgUrl: "https://wwww.python.org",
+    iconUrl: `${devIconUrl}/python/python-original.svg`,
+  },
+  {
+    techName: "git",
+    orgUrl: "https://github.com",
+    iconUrl: `${devIconUrl}/git/git-original.svg`,
+  },
+];

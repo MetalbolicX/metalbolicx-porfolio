@@ -161,9 +161,13 @@ export default createAbout;
  * Adds the content to about-stats container of the technologies I already know.
  */
 function technologiesUsedElements(): string {
-  return Object.entries(technologiesKnown).map(([key, value]) => /*html*/ `
-    <a href="${value}" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${key}/${key}-original.svg" alt="${key}"/>
+  return technologiesKnown.map((tech: {
+    techName: string;
+    orgUrl: string;
+    iconUrl: string;
+  }) => /*html*/ `
+    <a href="${tech.orgUrl}" target="_blank">
+      <img src="${tech.iconUrl}" alt="${tech.techName}"/>
     </a>
   `).join("");
 }
