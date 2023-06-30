@@ -9,6 +9,7 @@ function addNavigationBar(): HTMLDivElement[] {
     button.className = index === 0 ? "control active-btn" : "control";
     button.setAttribute("data-id", section);
     const view: string = /*html*/ `
+      <span class="page-name">${section}</span>
       <a href="#/${section}/">
         <i class="fas fa-${navIcons.at(index)}"></i>
       </a>
