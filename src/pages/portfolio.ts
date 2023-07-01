@@ -18,9 +18,9 @@ async function createPortfolio(): Promise<HTMLElement> {
       </p>
       <div class="portfolios">
         <div class="portfolio-item">
-          <div class="image">
+          <figure class="image">
             <img src="https://cdn.pixabay.com/photo/2021/05/11/17/21/charts-6246450_1280.png" alt="D3 chart library" />
-          </div>
+          </figure>
           <div class="hover-items">
             <h3>
               <a href="#">
@@ -29,15 +29,15 @@ async function createPortfolio(): Promise<HTMLElement> {
             </h3>
             <div class="icons">
               <a href="${projectsUrls.d3jslibrary}" target="_blank" class="icon">
-              <i class="fab fa-github"></i>
+                <i class="fab fa-github"></i>
               </a>
             </div>
           </div>
         </div>
         <div class="portfolio-item">
-          <div class="image">
+          <figure class="image">
             <img src="https://cdn.pixabay.com/photo/2020/06/25/14/21/server-icons-5339848_1280.png" alt="Go web sever" />
-          </div>
+          </figure>
           <div class="hover-items">
             <h3>
               <a href="#">
@@ -46,15 +46,15 @@ async function createPortfolio(): Promise<HTMLElement> {
             </h3>
             <div class="icons">
               <a href="${projectsUrls.gowebserver}" target="_blank" class="icon">
-              <i class="fab fa-github"></i>
+                <i class="fab fa-github"></i>
               </a>
             </div>
           </div>
         </div>
         <div class="portfolio-item">
-          <div class="image">
+          <figure class="image">
             <img src="https://ars.els-cdn.com/content/image/X02540584.jpg" alt="Journal publication" />
-          </div>
+          </figure>
           <div class="hover-items">
             <h3>
               <a href="#">
@@ -63,7 +63,7 @@ async function createPortfolio(): Promise<HTMLElement> {
             </h3>
             <div class="icons">
               <a href="${projectsUrls.materialsscience}" target="_blank" class="icon">
-              <i class="fa-brands fa-researchgate"></i>
+                <i class="fa-brands fa-researchgate"></i>
               </a>
             </div>
           </div>
