@@ -157,6 +157,15 @@ section {
   transition: all 0.4s ease-in-out;
 }
 
+/*Hover effect from: https://www.proglobalbusinesssolutions.com/css-hover-effects/*/
+.controls .control a:hover {
+  transform: scale(1.1);
+}
+
+.controls .control.active-btn a:hover {
+  box-shadow: 0 0 0.9em var(--color-secondary);
+}
+
 .active-btn .page-name {
   opacity: 1;
   font-weight: bold;
