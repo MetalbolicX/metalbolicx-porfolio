@@ -7,7 +7,7 @@ import getHash from "../utils/gethash";
 import resolveRoutes from "../utils/resolveroutes";
 import coloringButton from "../utils/coloringbutton";
 import selectId from "../utils/selectid";
-// import createJsScript from "../js/scriptJs";
+import createJsScript from "../js/scriptJs";
 
 type RouteHandler = () => Promise<HTMLElement>;
 interface Routes {
@@ -40,7 +40,7 @@ async function router(): Promise<void> {
   // Add the content on the web page
   mainContainer?.append(await render());
   // Add JavaScript in the script tag
-  // createJsScript(selectedId);
+  createJsScript(selectedId);
 }
 
 export default router;

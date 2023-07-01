@@ -548,10 +548,22 @@ section {
   align-items: center;
   font-size: 1.3rem;
 }
-
+/**/
 .contact-content-con .left-contact .contact-icon {
   display: flex;
-  margin-top: 2rem;
+  margin-top: 1rem;
+}
+
+.contact-content-con .left-contact .icon {
+  display: block;
+  padding: 0.2em;
+}
+
+.contact-content-con .left-contact .contact-icon .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .contact-content-con .left-contact .contact-icon a {
@@ -567,6 +579,22 @@ section {
   margin: 0 0.4rem;
   transition: all 0.4s ease-in-out;
 }
+
+.contact-icon .icon .icon-tooltip {
+  background-color: var(--color-secondary);
+  color: var(--color-grey-5);
+  font-size: 0.8em;
+  padding: 0.2em 0.5em;
+  border-radius: 1.5em;
+  box-shadow: 0 0.6em 0.6em rgba(0, 0, 0, 0.1);
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.contact-icon .icon .icon-tooltip {
+  opacity: 0;
+}
+/**/
 
 .contact-content-con .left-contact .contact-icon a:hover {
   background-color: var(--color-secondary);
