@@ -159,6 +159,7 @@ section {
 
 .active-btn .page-name {
   opacity: 1;
+  font-weight: bold;
 }
 
 /*Home-content*/
