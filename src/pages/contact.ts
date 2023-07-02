@@ -64,24 +64,15 @@ async function createContact(): Promise<HTMLElement> {
         </div>
         <div class="contact-icons">
           <div class="contact-icon">
-            <div class="icon">
-              <span class="icon-tooltip github-icon">github</span>
-              <a href="${urls.github}" class="github-icon" target="_blank">
-                <i class="fab fa-github github-icon"></i>
-              </a>
-            </div>
-            <div class="icon">
-              <span class="icon-tooltip linkedin-icon">linkedin</span>
-              <a href="${urls.linkedin}" class="linkedin-icon" target="_blank">
-                <i class="fab fa-linkedin-in linkedin-icon"></i>
-              </a>
-            </div>
-            <div class="icon">
-              <span class="icon-tooltip resume-icon">resume</span>
-              <a href="${urls.resume}" class="resume-icon" target="_blank">
-                <i class="fa-regular fa-address-card resume-icon"></i>
-              </a>
-            </div>
+            <a href="${urls.github}" class="github-icon" target="_blank">
+              <i class="fab fa-github github-icon"></i>
+            </a>
+            <a href="${urls.linkedin}" class="linkedin-icon" target="_blank">
+              <i class="fab fa-linkedin-in linkedin-icon"></i>
+            </a>
+            <a href="${urls.resume}" class="resume-icon" target="_blank">
+              <i class="fa-regular fa-address-card resume-icon"></i>
+            </a>
           </div>
         </div>
       </div>
