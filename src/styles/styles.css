@@ -496,7 +496,21 @@ section {
   font-size: 1.5rem;
   color: var(--color-white);
   margin-bottom: 1.5rem;
+}
+
+.portfolios .portfolio-item .hover-items h3 a {
   text-align: justify;
+}
+
+.portfolios .portfolio-item .hover-items h3:hover {
+  transition: all 0.3s;
+  letter-spacing: 3px;
+}
+
+.portfolios .portfolio-item .hover-items h3:hover::before {
+  content: "See details:";
+  text-align: left;
+  font-size: 0.7em;
 }
 
 .portfolios .portfolio-item .hover-items .icons {

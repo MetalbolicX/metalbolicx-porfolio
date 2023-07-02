@@ -40,7 +40,7 @@ async function router(): Promise<void> {
   // Add the content on the web page
   mainContainer?.append(await render());
   // Add JavaScript in the script tag
-  createJsScript(selectedId);
+  // createJsScript(selectedId);
 }
 
 export default router;

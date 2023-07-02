@@ -98,4 +98,15 @@ export const technologiesKnown: {
     orgUrl: "https://github.com",
     iconUrl: `${devIconUrl}/git/git-original.svg`,
   },
+  {
+    techName: "Microsoft Excel",
+    orgUrl: "https://www.microsoft.com/en-us/microsoft-365/excel",
+    iconUrl: "https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg",
+  },
+  {
+    techName: "SQL",
+    orgUrl: "https://en.wikipedia.org/wiki/SQL",
+    iconUrl: "https://www.svgrepo.com/show/331760/sql-database-generic.svg",
+
+  }
 ];
