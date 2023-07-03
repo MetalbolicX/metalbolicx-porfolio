@@ -508,9 +508,10 @@ section {
 }
 
 .portfolios .portfolio-item .hover-items h3:hover::before {
-  content: "See details:";
+  content: "To see details click:";
+  padding: 0.1em;
   text-align: left;
-  font-size: 0.7em;
+  font-size: 0.5em;
 }
 
 .portfolios .portfolio-item .hover-items .icons {
@@ -599,7 +600,32 @@ section {
   margin-top: 1rem;
 }
 
+.contact-content-con .left-contact .contact-icon .icon {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+.contact-content-con .left-contact .contact-icon .icon .icon-tooltip {
+  text-transform: capitalize;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  border-radius: 0.3em;
+  font-size: 0.7em;
+  background: var(--color-secondary);
+  padding: 0.2em;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.contact-content-con .left-contact .contact-icon .icon .icon-tooltip.active-icon {
+  opacity: 1;
+}
+
 .contact-content-con .left-contact .contact-icon a {
+  padding: 0.5em;
   display: flex;
   align-items: center;
   color: var(--color-white);
@@ -609,7 +635,7 @@ section {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  margin: 0 0.4rem;
+  margin: 0.1rem 0.4rem;
   transition: all 0.4s ease-in-out;
 }
 /**/
