@@ -85,11 +85,11 @@ function createContactView(): string {
       <div class="right-contact">
         <form  action="https://formspree.io/f/xdovqgbr" method="POST" class="contact-form">
           <div class="input-control i-c-2">
-            <input type="text" name="name" placeholder="Your name" title="Your complete name" pattern="^(\s)*[A-Za-zÁáÉéÍíÓóÚúöäüÖÄÜ]+((\s)?((\'|\-|\.)?([A-Za-zÁáÉéÍíÓóÚúöäüÖÄÜ])+))*(\s)*$" required/>
-            <input type="email" name="email" placeholder="Your email" title="Your email to be in contact" pattern="^[^\s;]+@[^\s;]+\.[^\s;]+(?:;[^\s;]+@[^\s;]+\.[^\s;]+)*$" required/>
+            <input type="text" name="name" placeholder="Your name" title="Only characters are allowed" pattern="^(\s)*[A-Za-zÁáÉéÍíÓóÚúöäüÖÄÜ]+((\s)?((\'|\-|\.)?([A-Za-zÁáÉéÍíÓóÚúöäüÖÄÜ])+))*(\s)*$" required/>
+            <input type="email" name="email" placeholder="Your email" title="Email allows '.', '+' and numbers" pattern="^[\\w\\._]{3,30}\\+?[\\w]{0,10}@[\\w\\.\\-]{3,}?\\.\\w{2,5}$" required/>
           </div>
           <div class="input-control">
-            <input type="text" name="subject" placeholder="Email subject" title="The subject of the email" required/>
+            <input type="text" name="subject" placeholder="Email subject" title="Write an attractive email subject" required/>
           </div>
           <div class="input-control">
             <textarea
