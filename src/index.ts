@@ -1,6 +1,6 @@
 import loader from "./routes/loader";
-import renderPage from "./routes/renderpage";
+import router from "./routes/router";
 
 window.onload = loader;
-window.addEventListener("DOMContentLoaded", renderPage);
-window.addEventListener("hashchange", renderPage);
+window.addEventListener("DOMContentLoaded", router);
+window.addEventListener("hashchange", router);

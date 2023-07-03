@@ -9,7 +9,7 @@ import selectId from "../utils/selectid";
 /**
  * Add the HTML section according to the url.
  */
-async function renderPage(): Promise<void> {
+async function router(): Promise<void> {
   // Get the path of the url
   const hash: string = getHash();
   const route: string = resolveRoutes(hash);
@@ -25,4 +25,4 @@ async function renderPage(): Promise<void> {
   mainContainer?.append(await render());
 }
 
-export default renderPage;
+export default router;
