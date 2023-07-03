@@ -1,13 +1,14 @@
 /**
- * Color the selected button
+ * Sets the class in navigation bar button clicked to show the current page.
+ * @param id The id of the navigation bar selected.
  */
-function coloringButton(dataId: string): void {
+function coloringButton(id: string): void {
   const buttons: HTMLElement[] = Array.from(document.querySelectorAll(".controls > div"));
-  const activeButton = buttons.find((button) =>
+  const activeButton = buttons.find((button: HTMLElement) =>
     button.classList.contains("active-btn")
   );
   activeButton?.classList.remove("active-btn");
-  const selectedButton = document.querySelector(`[data-id="${dataId}"]`);
+  const selectedButton = document.querySelector(`[data-id="${id}"]`);
   selectedButton?.classList.add("active-btn");
 }
 

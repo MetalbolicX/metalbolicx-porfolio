@@ -695,7 +695,7 @@ section {
 .contact-content-con .right-contact .input-control input:invalid:not(:placeholder-shown),
 .contact-content-con .right-contact .input-control textarea:invalid:not(:placeholder-shown) {
   border-color: orangered;
-  border-width: 2px;
+  border-width: 4px;
 }
 
 .contact-content-con .right-contact .input-control input:valid:not(:placeholder-shown):required:focus {
