@@ -85,11 +85,11 @@ function createContactView(): string {
       <div class="right-contact">
         <form  action="https://formspree.io/f/xdovqgbr" method="POST" class="contact-form">
           <div class="input-control i-c-2">
-            <input type="text" name="name" required placeholder="Your name" />
-            <input type="email" name="email" pattern="[a-z0-9][a-z0-9-_\.]+@([a-z]|[a-z0-9]?[a-z0-9-]+[a-z0-9])\.[a-z0-9]{2,10}(?:\.[a-z]{2,10})?" title="Invalid email address" required placeholder="Your email" />
+            <input type="text" name="name" placeholder="Your name" title="Your complete name" pattern="^(\s)*[A-Za-zÁáÉéÍíÓóÚúöäüÖÄÜ]+((\s)?((\'|\-|\.)?([A-Za-zÁáÉéÍíÓóÚúöäüÖÄÜ])+))*(\s)*$" required/>
+            <input type="email" name="email" placeholder="Your email" title="Your email to be in contact" pattern="^[^\s;]+@[^\s;]+\.[^\s;]+(?:;[^\s;]+@[^\s;]+\.[^\s;]+)*$" required/>
           </div>
           <div class="input-control">
-            <input type="text" name="subject" required placeholder="Enter subject" />
+            <input type="text" name="subject" placeholder="Email subject" title="The subject of the email" required/>
           </div>
           <div class="input-control">
             <textarea
@@ -97,8 +97,8 @@ function createContactView(): string {
               id=""
               cols="15"
               rows="8"
-              required
               placeholder="Write your message here..."
+              required
             ></textarea>
           </div>
           <div class="submit-btn">

@@ -678,12 +678,36 @@ section {
   font-family: inherit;
   padding: 0.8rem 1.1rem;
   outline: none;
-  border: none;
+  border: 2px solid transparent;
   background-color: var(--color-grey-5);
   width: 100%;
   color: var(--color-white);
   resize: none;
 }
+
+
+.contact-content-con .right-contact .input-control input:valid:not(:placeholder-shown),
+.contact-content-con .right-contact .input-control textarea:valid:not(:placeholder-shown) {
+  border-color: var(--color-secondary);
+  border-width: 2px;
+}
+
+.contact-content-con .right-contact .input-control input:invalid:not(:placeholder-shown),
+.contact-content-con .right-contact .input-control textarea:invalid:not(:placeholder-shown) {
+  border-color: orangered;
+  border-width: 2px;
+}
+
+.contact-content-con .right-contact .input-control input:valid:not(:placeholder-shown):required:focus {
+  background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg") no-repeat 95% 50% lightgreen;
+  background-size: 1.5em;
+}
+
+.contact-content-con .right-contact .input-control input:invalid:not(:placeholder-shown):required:focus {
+  background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg") no-repeat 95% 50% lightsalmon;
+  background-size: 1.5em;
+}
+/**/
 
 .contact-content-con .right-contact .i-c-2 {
   display: flex;
