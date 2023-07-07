@@ -85,8 +85,8 @@ function createAboutView(): string {
         <div class="tl-icon">
           <i class="fas fa-briefcase"></i>
         </div>
-        <p class="tl-duration">2010 - present</p>
-        <h5>Web Developer<span> - Vircrosoft</span></h5>
+        <p class="tl-duration">2018 - present</p>
+        <h5>Data analysts<span> - Freelance</span></h5>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
           quasi vero fugit.
