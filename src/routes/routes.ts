@@ -14,6 +14,7 @@ const routes: Routes = {
   "/contact": createContact,
   "/about": createAbout,
   "/portfolio": createPortfolio,
+  "/\\d+": createContact,
 };
 
 export default routes;

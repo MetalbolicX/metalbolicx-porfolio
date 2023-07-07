@@ -1,6 +1,6 @@
-import getHash from "../utils/gethash";
+import getPath from "../utils/getpath";
 import { RouteHandler } from "../routes/routes";
-import resolveRoutes from "../utils/resolveroutes";
+import handleRoute from "../utils/handleroute";
 import createError404 from "../pages/error404";
 
 /**
@@ -8,8 +8,8 @@ import createError404 from "../pages/error404";
  */
 async function router(): Promise<void> {
   // Get the path of the url
-  const hash: string = getHash();
-  const render: RouteHandler = resolveRoutes(hash) || createError404;
+  const path: string = getPath();
+  const render: RouteHandler = handleRoute(path) || createError404;
   // Delete previous info of the DOM
   const mainContainer: HTMLElement | null = document.querySelector(".main-container");
   mainContainer?.firstElementChild?.remove();
