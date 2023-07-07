@@ -4,10 +4,10 @@ import { projectsUrls } from "../utils/constants";
  */
 function createPortfolioView(): string {
   return /*html*/ `
-    <div class="portfolio-container">
-      <div class="main-title">
+    <section class="portfolio-container">
+      <header class="main-title">
         <h2>My <span>Portfolio</span><span class="bg-text">My Work</span></h2>
-      </div>
+      </header>
       <p class="port-text">
         Here is some of my work that I've done professionally.
       </p>
@@ -64,7 +64,7 @@ function createPortfolioView(): string {
           </div>
         </div>
       </div>
-    </div>`;
+    </section>`;
 }
 
 export default createPortfolioView;

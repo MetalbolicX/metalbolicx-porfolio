@@ -5,11 +5,11 @@ import { urls, personalInfoContact } from "../utils/constants";
  */
 function createContactView(): string {
   return /*html*/ `
-    <div class="main-title">
+    <header class="main-title">
       <h2>Contact <span>Me</span><span class="bg-text">Contact</span></h2>
-    </div>
+    </header>
     <div class="contact-content-con">
-      <div class="left-contact">
+      <section class="left-contact">
         <h4>Contact me here</h4>
         <p>
         Feel free to reach out to me for any inquiries or collaboration opportunities.
@@ -81,8 +81,8 @@ function createContactView(): string {
             </div>
           </div>
         </div>
-      </div>
-      <div class="right-contact">
+      </section>
+      <section class="right-contact">
         <form  action="https://formspree.io/f/xdovqgbr" method="POST" class="contact-form">
           <div class="input-control i-c-2">
             <input type="text" name="name" placeholder="Your name" title="Only characters are allowed" pattern="^(\s)*[A-Za-zÁáÉéÍíÓóÚúöäüÖÄÜ]+((\s)?((\'|\-|\.)?([A-Za-zÁáÉéÍíÓóÚúöäüÖÄÜ])+))*(\s)*$" required/>
@@ -108,7 +108,7 @@ function createContactView(): string {
             </button>
           </div>
         </form>
-      </div>
+      </section>
     </div>
     `;
 }

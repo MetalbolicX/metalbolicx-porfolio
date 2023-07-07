@@ -14,7 +14,7 @@ function resolveRoutes(route: string): RouteHandler | undefined {
   // Evaluate by pattern if the route exists
   const pathFound: string | undefined = Object.keys(routes).find(
     (path: string) => {
-      const re: RegExp = new RegExp(path);
+      const re: RegExp = new RegExp(`^${path}$`);
       if (re.test(route)) {
         return path;
       }

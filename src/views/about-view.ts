@@ -6,10 +6,10 @@ import { urls, technologiesKnown } from "../utils/constants";
 function createAboutView(): string {
   const technologies: string = technologiesUsedElements();
   return /*html*/ `
-    <div class="main-title">
+    <header class="main-title">
       <h2>About <span>me</span><span class="bg-text">my stats</span></h2>
-    </div>
-    <div class="about-container">
+    </header>
+    <section class="about-container">
       <div class="left-about">
         <h4>Information About me</h4>
         <p>
@@ -67,8 +67,8 @@ function createAboutView(): string {
           </div>
         </div>
       </div>
-    </div>
-    <div class="about-stats">
+    </section>
+    <section class="about-stats">
       <h4 class="stat-title">Technologies in which I am conformtable to work with</h4>
       <div class="logos">
         <div class="logos-slide">
@@ -78,9 +78,9 @@ function createAboutView(): string {
           ${technologies}
         </div>
       </div>
-    </div>
+    </section>
     <h4 class="stat-title">My Timeline</h4>
-    <div class="timeline">
+    <section class="timeline">
       <div class="timeline-item">
         <div class="tl-icon">
           <i class="fas fa-briefcase"></i>
@@ -147,7 +147,7 @@ function createAboutView(): string {
           quasi vero fugit.
         </p>
       </div>
-    </div>`;
+    </section>`;
 }
 
 /**

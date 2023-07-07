@@ -5,7 +5,7 @@ import { showTooltipIcon, hideTooltipIcon } from "../events/contact-events";
  * Create the HTML section element of contact page.
  */
 async function createContact(): Promise<HTMLElement> {
-  const contact: HTMLElement = document.createElement("section");
+  const contact: HTMLElement = document.createElement("main");
   contact.classList.add("container");
   contact.classList.add("contact");
   contact.classList.add("active");

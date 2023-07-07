@@ -4,15 +4,15 @@ import { urls } from "../utils/constants";
  */
 function createHomeView(): string {
   return /*html*/ `
-    <div class="home-content">
+    <section class="home-content">
       <div class="left-home">
         <div class="h-shape"></div>
-        <div class="image">
+        <figure class="image">
           <img
             src="https://images.unsplash.com/photo-1636303761818-4a517b06a349?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
             alt="my photo"
           />
-        </div>
+        </figure>
       </div>
       <div class="right-home">
         <h1 class="name">
@@ -32,7 +32,7 @@ function createHomeView(): string {
           </a>
         </div>
       </div>
-    </div>`;
+    </section>`;
 }
 
 export default createHomeView;
