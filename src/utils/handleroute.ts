@@ -3,7 +3,7 @@ import { RouteHandler } from "../routes/routes";
 
 /**
  * Find the handler to render the web page if exist according to the path.
- * @param route The route of the hash url page.
+ * @param route The route of the hash url to navigate the web page.
  */
 function handleRoute(route: string): RouteHandler | undefined {
   // Evaluate without regular expression if the route exists
@@ -11,12 +11,14 @@ function handleRoute(route: string): RouteHandler | undefined {
   if (handler) {
     return handler;
   }
-  // Evaluate by pattern if the route exists
-  const pathFound: string | undefined = Object.keys(routes).find(
-    (path: string) => new RegExp(`^${path}$`).test(route)
-  );
+  // Evaluate the route by regex pattern
+  // if the route was not found previously
+  const routeFound: string | undefined = Object.keys(routes)
+    .find(
+      (path: string) => new RegExp(`^${path}$`).test(route)
+    );
 
-  return pathFound ? routes[pathFound] : undefined;
+  return routeFound ? routes[routeFound] : undefined;
 }
 
 export default handleRoute;

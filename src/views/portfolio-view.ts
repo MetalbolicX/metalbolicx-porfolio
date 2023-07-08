@@ -18,8 +18,12 @@ function createPortfolioView(): string {
           </figure>
           <div class="hover-items">
             <h3>
-              <a href="#">
+              <a href="#" class="glow-effect">
                 D3 js library for common data visualization charts
+                <svg class="glow-container">
+                  <rect paathLeft="100" stroke-linecap="round" class="glow-blur"></rect>
+                  <rect paathTop="100" stroke-linecap="round" class="glow-line"></rect>
+                </svg>
               </a>
             </h3>
             <div class="icons">
@@ -35,8 +39,12 @@ function createPortfolioView(): string {
           </figure>
           <div class="hover-items">
             <h3>
-              <a href="#">
+              <a href="#" class="glow-effect">
                 Go web server
+                <svg class="glow-container">
+                  <rect paathLeft="100" stroke-linecap="round" class="glow-blur"></rect>
+                  <rect paathTop="100" stroke-linecap="round" class="glow-line"></rect>
+                </svg>
               </a>
             </h3>
             <div class="icons">
@@ -52,8 +60,12 @@ function createPortfolioView(): string {
           </figure>
           <div class="hover-items">
             <h3>
-              <a href="#">
-                Master research Journal publication
+              <a href="#" class="glow-effect">
+                Master degree research publication
+                <svg class="glow-container">
+                  <rect paathLeft="100" stroke-linecap="round" class="glow-blur"></rect>
+                  <rect paathTop="100" stroke-linecap="round" class="glow-line"></rect>
+                </svg>
               </a>
             </h3>
             <div class="icons">
