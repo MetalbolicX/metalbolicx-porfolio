@@ -110,3 +110,5 @@ export const technologiesKnown: {
 
   }
 ];
+
+export const emailVerifyKey: string = "ca1bcca51e124d2a9c5b2ebbe41856e8";

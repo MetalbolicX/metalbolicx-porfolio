@@ -725,7 +725,7 @@ main {
 .contact-content-con .right-contact .input-control input:invalid:not(:placeholder-shown),
 .contact-content-con .right-contact .input-control textarea:invalid:not(:placeholder-shown) {
   border-color: orangered;
-  border-width: 4px;
+  border-width: 5px;
 }
 
 .contact-content-con .right-contact .input-control input:valid:not(:placeholder-shown):required:focus {
@@ -755,6 +755,20 @@ main {
 .main-btn[type="submit"] {
   background-color: var(--color-primary);
   font-size: 1.2rem;
+}
+
+.notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  color: var(--color-white);
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  background-color: orangered;
 }
 
 /*Independed components*/
