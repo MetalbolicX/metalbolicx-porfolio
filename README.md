@@ -13,7 +13,7 @@ My personal portfolio using the arquitectue of the single page application creat
 ## Features
 
 - [x] Validation routing with **regular expressions**.
-- [x] It can handle a not existing route with a page 404 error page.
+- [x] It can handle a not existing route with a **404 error page**.
 
 # Usage
 
