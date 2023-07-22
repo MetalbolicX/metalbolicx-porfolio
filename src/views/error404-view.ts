@@ -1,5 +1,6 @@
 /**
  * Create the HTML view of the error 404 the web page.
+ * @returns {string} The HTML view of the error 404 the web page.
  */
 function createError404View(): string {
     return /*html*/ `
@@ -30,7 +31,7 @@ function createError404View(): string {
             </filter>
           </defs>
         </svg>
-        <h2 class="error404">Page Not Found</h2>
+        <h2 class="error404-title">Page Not Found</h2>
       </section>
     `;
 }

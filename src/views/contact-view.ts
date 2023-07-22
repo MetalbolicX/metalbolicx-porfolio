@@ -2,6 +2,7 @@ import { urls, personalInfoContact } from "../utils/constants";
 
 /**
  * Create the HTML view of the contact page.
+ * @returns {string} The HTML view of the contact page.
  */
 function createContactView(): string {
   return /*html*/ `

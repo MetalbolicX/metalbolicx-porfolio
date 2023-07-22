@@ -4,6 +4,7 @@ import { RouteHandler } from "../routes/routes";
 /**
  * Find the handler to render the web page if exist according to the path.
  * @param route The route of the hash url to navigate the web page.
+ * @returns {RouteHandler | undefined} Weather the handlwr function to ass the HTML view of the selected path exists or not.
  */
 function handleRoute(route: string): RouteHandler | undefined {
   // Evaluate without regular expression if the route exists

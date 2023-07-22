@@ -2,6 +2,7 @@ import { sections, navIcons } from "../utils/constants";
 
 /**
  * Creates the buttons for the navigation bar.
+ * @returns The array of HTML elements buttons for the navigation bar.
  */
 function addNavigationBar(): HTMLDivElement[] {
   const buttons: HTMLDivElement[] = sections.map((section: string, index: number) => {

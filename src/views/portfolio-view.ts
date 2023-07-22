@@ -1,6 +1,7 @@
 import { projectsUrls } from "../utils/constants";
 /**
  * Create the HTML view of the portfolio page.
+ * @returns {string} The HTML view of the portfolio page.
  */
 function createPortfolioView(): string {
   return /*html*/ `

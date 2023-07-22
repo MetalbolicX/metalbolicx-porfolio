@@ -2,6 +2,7 @@ import { urls, technologiesKnown } from "../utils/constants";
 
 /**
  * Create the HTML view of the about page.
+ * @returns {string} The HTML view of the about page.
  */
 function createAboutView(): string {
   const technologies: string = technologiesUsedElements();

@@ -1,6 +1,7 @@
 import { urls } from "../utils/constants";
 /**
  * Create the HTML view of the home page.
+ * @returns {string} The HTML view of the home page.
  */
 function createHomeView(): string {
   return /*html*/ `
