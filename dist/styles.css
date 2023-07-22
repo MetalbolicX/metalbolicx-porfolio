@@ -94,16 +94,16 @@ main {
   align-items: center;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
   transition: all 0.1s ease-in-out;
-}
 
-.theme-btn:active {
-  transform: translateY(-3px);
-}
+  &:active {
+    transform: translateY(-3px);
+  }
 
-.theme-btn i {
-  font-size: 1.4rem;
-  color: var(--color-grey-2);
-  pointer-events: none;
+  i {
+    font-size: 1.4rem;
+    color: var(--color-grey-2);
+    pointer-events: none;
+  }
 }
 
 /*Controls navigation bar*/
@@ -117,59 +117,71 @@ main {
   align-items: center;
   justify-content: center;
   transform: translateY(-50%);
+
+  .control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0.5em;
+    cursor: pointer;
+
+    .page-name {
+      text-transform: capitalize;
+      margin-top: 0.5em;
+      opacity: 0;
+      font-size: 0.9em;
+      color: var(--color-grey-2);
+    }
+
+    & a {
+      font-size: 1.2rem;
+      color: var(--color-grey-2);
+      padding: 0.3rem;
+      background-color: var(--color-grey-4);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 3.5rem;
+      height: 3.5rem;
+
+      /*Hover effect from: https://www.proglobalbusinesssolutions.com/css-hover-effects/*/
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    & i {
+      pointer-events: none;
+    }
+
+  }
+
+  .control.active-btn {
+    .page-name {
+      opacity: 1;
+      font-weight: bold;
+    }
+
+    & a {
+      background-color: var(--color-secondary);
+      transition: all 0.4s ease-in-out;
+
+      &:hover {
+        box-shadow: 0 0 0.9em var(--color-secondary);
+      }
+    }
+  }
 }
 
-.control {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 0.5em;
-  cursor: pointer;
-}
 
-.page-name {
+/* .page-name {
   text-transform: capitalize;
   margin-top: 0.5em;
   opacity: 0;
   font-size: 0.9em;
   color: var(--color-grey-2);
-}
-
-.controls .control a {
-  font-size: 1.2rem;
-  color: var(--color-grey-2);
-  padding: 0.3rem;
-  background-color: var(--color-grey-4);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3.5rem;
-  height: 3.5rem;
-}
-
-.controls .control i {
-  pointer-events: none;
-}
-
-.controls .control.active-btn a {
-  background-color: var(--color-secondary);
-  transition: all 0.4s ease-in-out;
-}
-
-/*Hover effect from: https://www.proglobalbusinesssolutions.com/css-hover-effects/*/
-.controls .control a:hover {
-  transform: scale(1.1);
-}
-
-.controls .control.active-btn a:hover {
-  box-shadow: 0 0 0.9em var(--color-secondary);
-}
-
-.active-btn .page-name {
-  opacity: 1;
-  font-weight: bold;
-}
+} */
 
 /*Home-content*/
 .home {
@@ -725,7 +737,7 @@ main {
 .contact-content-con .right-contact .input-control input:invalid:not(:placeholder-shown),
 .contact-content-con .right-contact .input-control textarea:invalid:not(:placeholder-shown) {
   border-color: orangered;
-  border-width: 6px;
+  border-width: 5px;
 }
 
 .contact-content-con .right-contact .input-control input:valid:not(:placeholder-shown):required:focus {
@@ -755,6 +767,20 @@ main {
 .main-btn[type="submit"] {
   background-color: var(--color-primary);
   font-size: 1.2rem;
+}
+
+.notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  color: var(--color-white);
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  background-color: orangered;
 }
 
 /*Independed components*/
@@ -1282,18 +1308,4 @@ div.error404 {
   100%  {
     filter: hue-rotate(0deg);
   }
-}
-
-.notification {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 10px 20px;
-  color: var(--color-white);
-  font-weight: bold;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  z-index: 9999;
-  background-color: orangered;
 }
