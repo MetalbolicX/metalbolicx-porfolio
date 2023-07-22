@@ -8,7 +8,32 @@ By José Martínez Santana
 
 ## Description
 
-My personal portfolio using the arquitectue of the single page application.
+My personal portfolio using the arquitectue of the single page application created mainly with `CSS` and `TypeScript`.
+
+## Features
+
+- [x] Validation routing with **regular expressions**.
+- [x] It can handle a not existing route with a page 404 error page.
+
+# Usage
+
+## Project structure
+
+To implement the logic for the web page, add the code the next folders of the `src` folder. They purposes are the next:
+
+|Folder 📁|Purpose|
+|:---|:---|
+|events|The TypeScript event listeners logic of the DOM.|
+|pages|The TypeScript to create the `main` tag of each page.|
+|routes|To hold the handler functions to add the DOM elements of the web page selected.|
+|styles|The CSS file styles|
+|templates|The TypeScript for the permanent elements of the web page. For example: The navigation bar.|
+|utils|The TypeScript code for custom processing|
+|views|The TypeScript functions to hold the HTML view of the web page.|
+
+## Add a new page/route
+
+In the `src/routes` folder in the `routes.ts` file add the `import` the *function* from `src/pages` folder and add to the `object` the <ins>route</ins> and <ins>handler function</ins>. The path can use **regular expressions** in case a validation pattern is needed.
 
 # Contributing
 
