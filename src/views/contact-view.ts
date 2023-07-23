@@ -90,7 +90,7 @@ function createContactView(): string {
             <input type="email" name="email" placeholder="Your email" title="Email allows '.', '+' and numbers" pattern="^[\\w\\._]{3,30}\\+?[\\w]{0,10}@[\\w\\.\\-]{3,}?\\.\\w{2,5}$" required/>
           </div>
           <div class="input-control">
-            <input type="text" name="subject" placeholder="Email subject" title="Write an attractive email subject" pattern="^[^\>\<]*$" required/>
+            <input type="text" name="subject" placeholder="Email subject" title="Write an attractive email subject" pattern="^(?!(<\/?[a-zA-Z]{1,15}.*?>)).*$" required/>
           </div>
           <div class="input-control">
             <textarea
@@ -100,7 +100,7 @@ function createContactView(): string {
               rows="8"
               placeholder="Your message must have at least 50 characters long."
               minLength="50"
-              pattern="^[^\>\<]*$"
+              pattern="^(?!(<\/?[a-zA-Z]{1,15}.*?>)).*$"
               required
             ></textarea>
           </div>
