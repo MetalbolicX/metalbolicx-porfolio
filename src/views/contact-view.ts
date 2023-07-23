@@ -13,7 +13,7 @@ function createContactView(): string {
       <section class="left-contact">
         <h4>Contact me here</h4>
         <p>
-        Feel free to reach out to me for any inquiries or collaboration opportunities.
+          Feel free to reach out to me for any inquiries or collaboration opportunities.
         </p>
         <div class="contact-info">
           <div class="contact-item">
@@ -90,7 +90,7 @@ function createContactView(): string {
             <input type="email" name="email" placeholder="Your email" title="Email allows '.', '+' and numbers" pattern="^[\\w\\._]{3,30}\\+?[\\w]{0,10}@[\\w\\.\\-]{3,}?\\.\\w{2,5}$" required/>
           </div>
           <div class="input-control">
-            <input type="text" name="subject" placeholder="Email subject" title="Write an attractive email subject" required/>
+            <input type="text" name="subject" placeholder="Email subject" title="Write an attractive email subject" pattern="^[^\>\<]*$" required/>
           </div>
           <div class="input-control">
             <textarea
@@ -98,7 +98,9 @@ function createContactView(): string {
               id=""
               cols="15"
               rows="8"
-              placeholder="Write your message here..."
+              placeholder="Your message must have at least 50 characters long."
+              minLength="50"
+              pattern="^[^\>\<]*$"
               required
             ></textarea>
           </div>
