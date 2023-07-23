@@ -30,21 +30,36 @@ function hideTooltipIcon(event: Event): void {
 /**
  * Makes an API request to verify the email format before submit the form.
  */
-async function checkFormSubmit(event: Event): Promise<void> {
-  event.preventDefault();
-  const target = event.target as HTMLFormElement;
-  const email: HTMLInputElement | null = target.querySelector("input[type='email']");
+function checkFormSubmit(event: Event): void {
+  // event.preventDefault();
+  const frm = event.target as HTMLFormElement;
+  const formInputs: (HTMLInputElement | HTMLTextAreaElement)[] = Array.from(
+    frm.querySelectorAll("[required]")
+  );
 
-  if (!email) {
-    showNotification("The email in the form was not written");
-  }
+  const isSanitized: boolean = formInputs.some(
+    (formInput: HTMLInputElement | HTMLTextAreaElement) =>
+      new RegExp(/<\/?[a-zA-Z]{1,15}.*?>/).test(formInput.value)
+  );
 
-  const isValidEmail = await checkEmail(email!.value);
-  if (!isValidEmail) {
-    showNotification(`Invalid email ${email?.value}`);
+  if (isSanitized) {
+    showNotification("The input in the controls of the form are not allowed");
     return;
   }
-  target.submit();
+
+  const email: HTMLInputElement | HTMLTextAreaElement | undefined =
+    formInputs.find((formInput: HTMLInputElement | HTMLTextAreaElement) =>
+      new RegExp(
+        "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
+      ).test(formInput.value)
+    );
+
+  if (!email) {
+    showNotification("Please enter a valid email address");
+    return;
+  }
+
+  frm.submit();
 }
 
 /**
@@ -68,19 +83,4 @@ function showNotification(message: string): void {
   }, 3000);
 }
 
-/**
- * Make the fetch to check whether the email is valid or not.
- * @param email The email address to check.
- */
-async function checkEmail(email: string): Promise<boolean> {
-  const resp = await fetch(`https://emailvalidation.abstractapi.com/v1/?api_key=${emailVerifyKey}&email=${email}`);
-  if (resp.status !== 200) {
-    return false;
-  }
-  const json = await resp.json();
-  return json.is_valid_format.value;
-}
-
 export { showTooltipIcon, hideTooltipIcon, checkFormSubmit };
-
-
