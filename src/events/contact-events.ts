@@ -1,4 +1,3 @@
-import { emailVerifyKey } from "../utils/constants";
 /**
  * Show the tooltip span for the .contact-icon class icons.
  */
@@ -31,7 +30,6 @@ function hideTooltipIcon(event: Event): void {
  * Makes an API request to verify the email format before submit the form.
  */
 function checkFormSubmit(event: Event): void {
-  // event.preventDefault();
   const frm = event.target as HTMLFormElement;
   const formInputs: (HTMLInputElement | HTMLTextAreaElement)[] = Array.from(
     frm.querySelectorAll("[required]")
