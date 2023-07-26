@@ -1,0 +1,169 @@
+:root {
+  --light-color: #e9e7ea;
+  --grey-color: gray;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--light-color);
+  width: 8.5in;
+  height: 11in;
+  max-width: 100%;
+  margin: auto;
+  box-shadow: 0 0.5em 3em var(--grey-color);
+}
+
+p {
+  text-align: justify;
+}
+
+time {
+  color: var(--grey-color);
+  font-size: 0.95em;
+}
+
+.name {
+  background-color: black;
+  color: var(--light-color);
+  text-align: center;
+  padding: 0 0 0.5em;
+
+  & h1 {
+    font-size: 2em;
+    letter-spacing: 8px;
+    font-weight: 750;
+  }
+
+  & h3 {
+    letter-spacing: 0.4em;
+    font-weight: 650;
+    font-size: 1.3em;
+  }
+}
+
+main {
+  padding: 0 1em;
+
+  & section {
+    margin-bottom: 0.5em;
+  }
+}
+
+.projects,
+.work-exp {
+  text-align: justify;
+
+  & time {
+    float: right;
+  }
+}
+
+.projects {
+  & > div {
+    border-bottom: 2px solid var(--grey-color);
+  }
+
+  & p {
+    margin-bottom: 0.3em;
+  }
+
+  .tech-stack {
+    display: flex;
+    font-size: 0.85em;
+
+    & span {
+      margin-right: 0.7em;
+    }
+
+    & ul {
+      display: flex;
+      text-align: left;
+
+      & li {
+        margin-right: 0.5em;
+        & i {
+          margin-right: 0.3em;
+        }
+      }
+    }
+  }
+}
+
+.education {
+  display: flex;
+
+  .formal,
+  .informal {
+    flex: 1;
+    padding: 0 1em;
+    box-sizing: border-box;
+    text-align: justify;
+    border-top: 1px dashed var(--grey-color);
+    border-bottom: 1px dashed var(--grey-color);
+    border-right: 1px dashed var(--grey-color);
+
+    & span {
+      font-weight: 520;
+    }
+  }
+
+  & h4 {
+    padding: 0.2em;
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+  & time {
+    font-size: small;
+    float: right;
+  }
+
+  .formal {
+    border-left: 1px dashed var(--grey-color);
+  }
+}
+
+footer {
+  background-color: black;
+  padding: 0 1em;
+  color: var(--light-color);
+  display: flex;
+  align-items: center;
+
+  & h5 {
+    font-weight: 800;
+    width: 15%;
+  }
+}
+
+ul.contact {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0 3em;
+
+  & li {
+    display: flex;
+    align-items: center;
+    font-size: 0.95em;
+    margin-right: 1em;
+
+    & i {
+      margin-right: 1em;
+    }
+  }
+}
+
+@media print {
+  body {
+    margin: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+}

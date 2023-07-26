@@ -29,7 +29,7 @@ export const personalInfoContact: {
   location: "State of Mexico, Mexico",
   email: "jose.martinez.santana@gmail.com",
   education: "UAEMex, MSc. Materials science",
-  phone: "+527225126091",
+  phone: "+520447225126091",
   languages: "Spanish (native), English",
 };
 
@@ -107,7 +107,11 @@ export const technologiesKnown: {
     techName: "SQL",
     orgUrl: "https://en.wikipedia.org/wiki/SQL",
     iconUrl: "https://www.svgrepo.com/show/331760/sql-database-generic.svg",
-
+  },
+  {
+    techName: "VBA",
+    orgUrl: "https://learn.microsoft.com/en-us/office/vba/library-reference/concepts/getting-started-with-vba-in-office",
+    iconUrl: "https://wyday.com/images/lm/langs/vba.1.svg",
   }
 ];
 
