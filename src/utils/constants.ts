@@ -28,7 +28,7 @@ export const personalInfoContact: {
 } = {
   location: "State of Mexico, Mexico",
   email: "jose.martinez.santana@gmail.com",
-  education: "UAEMex, MSc. Materials science",
+  education: "UAEMex, M.Sc. Materials Science",
   phone: "+520447225126091",
   languages: "Spanish (native), English",
 };
@@ -77,11 +77,6 @@ export const technologiesKnown: {
     techName: "d3js",
     orgUrl: "https://d3js.org",
     iconUrl: `${devIconUrl}/d3js/d3js-original.svg`,
-  },
-  {
-    techName: "typescript",
-    orgUrl: "https://www.typescriptlang.org/",
-    iconUrl: `${devIconUrl}/typescript/typescript-original.svg`,
   },
   {
     techName: "golang",

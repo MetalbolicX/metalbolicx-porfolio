@@ -245,6 +245,7 @@ main {
 
       & span {
         color: var(--color-secondary);
+        text-shadow: 0 0 0.1em, 0 0 0.5em;
 
         overflow: hidden;
         border-right: 0.1em solid var(--color-secondary);
