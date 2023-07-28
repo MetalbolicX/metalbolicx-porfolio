@@ -28,7 +28,7 @@ To implement the logic for the web page, add the code the next folders of the `s
 |routes|To hold the handler functions to add the DOM elements of the web page selected.|
 |templates|The JavaScript for the permanent elements of the web page that will not change. For example: The navigation bar.|
 |utils|The JavaScript code for custom processing|
-|views|The TypeScript functions to hold the HTML view of the web page.|
+|views|The JavaScript functions to hold the HTML view of the web page.|
 
 ## Add a new page/route
 
