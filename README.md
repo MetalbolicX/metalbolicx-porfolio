@@ -37,7 +37,7 @@ To implement the logic for the web page, add the code to the respective folders 
 |Folder 📁|Purpose|
 |:---|:---|
 |events|Contains the JavaScript event listener logic of the DOM.|
-|pages|THolds the JavaScript code to create the `main` tag of each page.|
+|pages|Holds the JavaScript code to create the `main` tag of each page.|
 |routes|Contains the handler functions to add the DOM elements of the selected web page.|
 |templates|Holds JavaScript code for the permanent elements of the web page that will not change, for example: The navigation bar.|
 |utils|Contains JavaScript code for custom processing.|
@@ -46,13 +46,15 @@ To implement the logic for the web page, add the code to the respective folders 
 ## Adding a New Page/Route
 To add a new page/route to the application, follow these steps:
 
-1. In the `src/internal/routes`` folder, open the routes.ts file and add an import statement for the new page. For example:
+1. Create the new view with HTML for the content of the new page in the `src/internal/views` folder.
+2. Create the new DOM node for the new page in the `src/internal/pages` folder. If the new page requires a DOM node to listen to events, add the <ins>event listener function</ins> in the `src/internal/events` folder. Finally, add the listener to the specific element in the new view.
+3. In the `src/internal/routes` folder, open the routes.ts file, and add an import statement for the new page. For example:
 
 ```TypeScript
 import createUser from "../pages/user";
 ```
 
-2. In the JavaScript object, add the name of the <ins>route</ins> and <ins>handler function</ins> for the new page. You can use a regular expression in the path if a validation pattern is needed. For example:
+4. In the JavaScript object, add the name of the <ins>route</ins> and <ins>handler function</ins> for the new page. You can use a regular expression in the path if a validation pattern is needed. For example:
 
  ```TypeScript
 const routes: Routes = {
