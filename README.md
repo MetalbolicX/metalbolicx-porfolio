@@ -38,7 +38,7 @@ In the `src/internal/routes` folder in the `routes.ts` file add the `import`. Fo
 import createUser from "../pages/user";
 ```
 
- In the `JavaScript` **object** add the name of the <ins>route</ins> and <ins>handler functio of the new page</ins>. The path can use **regular expressions** in case a validation pattern is needed. For example:
+ In the `JavaScript` **object** add the name of the <ins>route</ins> and <ins>handler function</ins> of the new page. The path can use a **regular expression** in case a validation pattern is needed. For example:
 
  ```TypeScript
 const routes: Routes = {
