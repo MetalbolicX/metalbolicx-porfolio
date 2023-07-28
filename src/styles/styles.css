@@ -65,11 +65,6 @@ main {
   transform: translateY(-100%) scale(0);
 }
 
-.active {
-  transform: translateY(0) scaleY(1);
-  animation: appear 1s ease-in-out;
-}
-
 @keyframes appear {
   0% {
     transform: translateY(-100%) scaleY(0);
@@ -77,6 +72,11 @@ main {
   100% {
     transform: translateY(0) scaleY(1);
   }
+}
+
+.active {
+  transform: translateY(0) scaleY(1);
+  animation: appear 1s ease-in-out;
 }
 
 /*Theme button*/
@@ -179,7 +179,7 @@ main {
     border-color: transparent;
   }
   50% {
-    border-color: var(--color-secondary)
+    border-color: var(--color-secondary);
   }
 }
 

@@ -1,5 +1,5 @@
-import routes from "../routes/routes";
-import { RouteHandler } from "../routes/routes";
+import routes from "../../internal/routes/routes";
+import { RouteHandler } from "../../internal/routes/routes";
 
 /**
  * Find the handler to render the web page if exist according to the path.

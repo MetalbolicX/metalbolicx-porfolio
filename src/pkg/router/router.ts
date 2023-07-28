@@ -1,7 +1,7 @@
 import getPath from "../utils/getpath";
-import { RouteHandler } from "../routes/routes";
+import { RouteHandler } from "../../internal/routes/routes";
 import handleRoute from "../utils/handleroute";
-import createError404 from "../pages/error404";
+import createError404 from "../../internal/pages/error404";
 
 /**
  * Add the HTML section according to the url.
