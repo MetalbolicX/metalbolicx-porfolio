@@ -4,11 +4,24 @@ By José Martínez Santana
 
 ## Technologies used
 
-<p align="left"> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/> </a> </p>
+<p align="left">
+    <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/>
+    </a>
+    <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/>
+    </a>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/>
+    </a>
+    <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/>
+    </a>
+</p>
 
 ## Description
 
-My personal portfolio using the arquitectue of the single page application created mainly with `CSS` and `TypeScript`.
+Welcome to my personal portfolio, built using the architecture of a single-page application mainly with `CSS` and `TypeScript`.
 
 ## Features
 
@@ -19,31 +32,32 @@ My personal portfolio using the arquitectue of the single page application creat
 
 ## Project structure
 
-To implement the logic for the web page, add the code the next folders of the `src/internal` folder. They purposes are the next:
+To implement the logic for the web page, add the code to the respective folders inside the `src/internal` directory. Here is the purpose of each folder:
 
 |Folder 📁|Purpose|
 |:---|:---|
-|events|The JavaScript event listeners logic of the DOM.|
-|pages|The JavaScript to create the `main` tag of each page.|
-|routes|To hold the handler functions to add the DOM elements of the web page selected.|
-|templates|The JavaScript for the permanent elements of the web page that will not change. For example: The navigation bar.|
-|utils|The JavaScript code for custom processing|
-|views|The JavaScript functions to hold the HTML view of the web page.|
+|events|Contains the JavaScript event listener logic of the DOM.|
+|pages|THolds the JavaScript code to create the `main` tag of each page.|
+|routes|Contains the handler functions to add the DOM elements of the selected web page.|
+|templates|Holds JavaScript code for the permanent elements of the web page that will not change, for example: The navigation bar.|
+|utils|Contains JavaScript code for custom processing.|
+|views|Holds the JavaScript functions that define the HTML view of the web page.|
 
-## Add a new page/route
+## Adding a New Page/Route
+To add a new page/route to the application, follow these steps:
 
-In the `src/internal/routes` folder in the `routes.ts` file add the `import`. For example:
+1. In the `src/internal/routes`` folder, open the routes.ts file and add an import statement for the new page. For example:
 
 ```TypeScript
 import createUser from "../pages/user";
 ```
 
- In the `JavaScript` **object** add the name of the <ins>route</ins> and <ins>handler function</ins> of the new page. The path can use a **regular expression** in case a validation pattern is needed. For example:
+2. In the JavaScript object, add the name of the <ins>route</ins> and <ins>handler function</ins> for the new page. You can use a regular expression in the path if a validation pattern is needed. For example:
 
  ```TypeScript
 const routes: Routes = {
     // Create the user web page depending on data of a given user
-    "/user/\\d+": createUSer;
+    "/user/\\d+": createUser;
 };
  ```
 
