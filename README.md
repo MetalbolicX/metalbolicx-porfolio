@@ -49,7 +49,7 @@ To add a new page/route to the application, follow these steps:
 
 1. Create the new view with HTML for the content of the new page inside the `src/internal/views` folder.
 2. Create the new DOM node for the new page inside the `src/internal/pages` folder. If the new page requires a DOM node to listen to events, add the <ins>event listener function</ins> in the `src/internal/events` folder. Finally, add the listener to the specific element in the new view.
-3. Create a new page inside the `src/internal/pages. In the file add `import Page from "../../pkg/page/page";`, In addition import the view and add the listener function in case the later are needed. For example:
+3. Create a new page inside the `src/internal/pages`. In the file add `import Page from "../../pkg/page/page";`, In addition import the view and add the listener function in case the later are needed. The imported `Page class` helps to create the new content in the DOM. For example:
 
 ```TypeScript
 import Page from "../../pkg/page/page";
@@ -78,13 +78,13 @@ async function createContact(): Promise<HTMLElement> {
 
 export default createContact;
 ```
-4. In the `src/internal/routes` folder, open the routes.ts file, and add an import statement for the new page. For example:
+4. In the `src/internal/routes` folder, open the `routes.ts` file, and add an import statement for the new page. For example:
 
 ```TypeScript
 import creatContact from "../pages/contact";
 ```
 
-5. In the JavaScript object, add the name of the <ins>route</ins> and <ins>handler function</ins> for the new page. You can use a regular expression in the path if a validation pattern is needed. For example:
+5. In the JavaScript object, add the name of the <ins>route</ins> and <ins>handler function</ins> for the new page. You can use a **regular expression** in the path if a validation pattern is needed. For example:
 
  ```TypeScript
 const routes: Routes = {
