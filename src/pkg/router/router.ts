@@ -63,7 +63,7 @@ class Router {
 
   protected set setContainerSelector(containerSelector: string) {
     if (containerSelector === "") {
-      throw new Error(" The empty string is an invalid container for css selector");
+      throw new Error(" The empty string is an invalid container for CSS selector");
     }
     this.containerSelector = containerSelector;
   }
