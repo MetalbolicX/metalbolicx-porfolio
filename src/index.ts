@@ -1,6 +1,8 @@
 import loader from "./internal/routes/loader";
-import router from "./pkg/router/router";
+import Router from "./pkg/router/router"
+import routes from "./internal/routes/routes";
 
 window.onload = loader;
-window.addEventListener("DOMContentLoaded", router);
-window.addEventListener("hashchange", router);
+
+const app: Router = new Router(routes, ".main-container");
+app.init();
