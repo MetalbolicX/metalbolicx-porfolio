@@ -10,6 +10,12 @@ class Router {
   private containerSelector: string = "";
   private mainContainer: HTMLElement | null;
 
+  /**
+   * Create a new Router instance.
+   * @param {Routes} routes - An object containing the routes and their corresponding handler functions.
+   * @param {string} containerSelector - The CSS selector of the main container where the content will be rendered.
+   * @throws {Error} Will throw an error if the containerSelector is an empty string or if the container does not exist in the DOM.
+   */
   constructor(routes: Routes, containerSelector: string) {
     this.routes = routes;
     this.setContainerSelector = containerSelector;
@@ -24,8 +30,9 @@ class Router {
   }
 
   /**
-   * Get the current hast and create the route.
-   * @returns {string} The route parsed in the browser.
+   * Get the current hash and create the route.
+   * @returns {string} The parsed route from the browser's URL hash.
+   * @private
    */
   private getRouteHash(): string {
     const urlHash: string = window.location.hash;
@@ -35,8 +42,9 @@ class Router {
   }
 
   /**
-   * Verify whether the current route exists in the object of routes, in case it does not verify by a regex pattern otherwise assing the error 404 route.
-   * @returns {string} The key route for the Routes object to get the handler function.
+   * Find the corresponding route for the current hash.
+   * @returns {string} The key route in the Routes object to get the handler function.
+   * @private
    */
   private findRoute(): string {
     const route: string = this.getRouteHash();
@@ -47,7 +55,8 @@ class Router {
   }
 
   /**
-   * Manage the content added in the main container when the hash url is changed.
+   * Manage the content added in the main container when the hash URL is changed.
+   * @private
    */
   private async handleRouteChange(): Promise<void> {
     this.currentRoute = this.findRoute();
@@ -57,10 +66,21 @@ class Router {
     this.mainContainer?.append(await render());
   }
 
+    /**
+   * Get the CSS selector for the main container.
+   * @type {string}
+   * @protected
+   */
   protected get getContainerSelector(): string {
     return this.containerSelector;
   }
 
+    /**
+   * Set the CSS selector for the main container.
+   * @param {string} containerSelector - The CSS selector for the main container.
+   * @throws {Error} Will throw an error if the containerSelector is an empty string.
+   * @protected
+   */
   protected set setContainerSelector(containerSelector: string) {
     if (containerSelector === "") {
       throw new Error(" The empty string is an invalid container for CSS selector");
@@ -69,7 +89,7 @@ class Router {
   }
 
   /**
-   * Start the router and "listens" the changes of the route in the single web page application.
+   * Start the router and listen for changes in the route in the single web page application.
    */
   init(): void {
     window.addEventListener("hashchange", this.handleRouteChange.bind(this));

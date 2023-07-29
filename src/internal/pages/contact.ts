@@ -1,25 +1,25 @@
+import Page from "../../pkg/page/page";
 import createContactView from "../views/contact-view";
-import { showTooltipIcon, hideTooltipIcon, checkFormSubmit } from "../events/contact-events";
+import {
+  showTooltipIcon,
+  hideTooltipIcon,
+  checkFormSubmit,
+} from "../events/contact-events";
 
 /**
  * Create the HTML section element of contact page.
  */
 async function createContact(): Promise<HTMLElement> {
-  const contact: HTMLElement = document.createElement("main");
-  contact.classList.add("container");
-  contact.classList.add("contact");
-  contact.classList.add("active");
+  const contactPage: Page = new Page("main", createContactView(), [
+    "contact",
+    "container",
+    "active",
+  ]);
+  contactPage.addListener(".contact-icon", "mouseover", showTooltipIcon);
+  contactPage.addListener(".contact-icon", "mouseout", hideTooltipIcon);
+  contactPage.addListener("form", "submit", checkFormSubmit);
+  return contactPage.getNode;
 
-  contact.innerHTML = createContactView();
-
-  const icons: HTMLElement | null = contact.querySelector(".contact-icon");
-  icons?.addEventListener("mouseover", showTooltipIcon);
-  icons?.addEventListener("mouseout", hideTooltipIcon);
-
-  const form: HTMLFormElement | null = contact.querySelector("form");
-  form?.addEventListener("submit", checkFormSubmit);
-
-  return contact;
 }
 
 export default createContact;
