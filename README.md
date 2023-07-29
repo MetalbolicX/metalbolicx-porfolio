@@ -25,8 +25,9 @@ Welcome to my personal portfolio, built using the architecture of a single-page 
 
 ## Features
 
-- [x] Validation of the route with **regular expressions**.
+- [x] Validation of the routes of the web page using **regular expressions**.
 - [x] It can handle a not existing route with a **404 error page**.
+- [x] It can add **event listeners** to the DOM of a given page.
 
 # Usage
 
@@ -37,8 +38,8 @@ To implement the logic for the web page, add the code to the respective folders 
 |Folder 📁|Purpose|
 |:---|:---|
 |events|Contains the JavaScript event listener logic of the DOM.|
-|pages|Holds the JavaScript code to create the `main` tag of each page.|
-|routes|Contains the handler functions to add the DOM elements of the selected web page.|
+|pages|Holds the JavaScript code to add in the `main-container`.|
+|routes|Contains routes and the handler functions to add the DOM elements of the selected web page.|
 |templates|Holds JavaScript code for the permanent elements of the web page that will not change, for example: The navigation bar.|
 |utils|Contains JavaScript code for custom processing.|
 |views|Holds the JavaScript functions that define the HTML view of the web page.|
@@ -46,20 +47,49 @@ To implement the logic for the web page, add the code to the respective folders 
 ## Adding a New Page/Route
 To add a new page/route to the application, follow these steps:
 
-1. Create the new view with HTML for the content of the new page in the `src/internal/views` folder.
-2. Create the new DOM node for the new page in the `src/internal/pages` folder. If the new page requires a DOM node to listen to events, add the <ins>event listener function</ins> in the `src/internal/events` folder. Finally, add the listener to the specific element in the new view.
-3. In the `src/internal/routes` folder, open the routes.ts file, and add an import statement for the new page. For example:
+1. Create the new view with HTML for the content of the new page inside the `src/internal/views` folder.
+2. Create the new DOM node for the new page inside the `src/internal/pages` folder. If the new page requires a DOM node to listen to events, add the <ins>event listener function</ins> in the `src/internal/events` folder. Finally, add the listener to the specific element in the new view.
+3. Create a new page inside the `src/internal/pages. In the file add `import Page from "../../pkg/page/page";`, In addition import the view and add the listener function in case the later are needed. For example:
 
 ```TypeScript
-import createUser from "../pages/user";
+import Page from "../../pkg/page/page";
+import createContactView from "../views/contact-view";
+import {
+  showTooltipIcon,
+  hideTooltipIcon,
+  checkFormSubmit,
+} from "../events/contact-events";
+
+/**
+ * Create the HTML section element of contact page.
+ */
+async function createContact(): Promise<HTMLElement> {
+  const contactPage: Page = new Page("main", createContactView(), [
+    "contact",
+    "container",
+    "active",
+  ]);
+  contactPage.addListener(".contact-icon", "mouseover", showTooltipIcon);
+  contactPage.addListener(".contact-icon", "mouseout", hideTooltipIcon);
+  contactPage.addListener("form", "submit", checkFormSubmit);
+  return contactPage.getNode;
+
+}
+
+export default createContact;
+```
+4. In the `src/internal/routes` folder, open the routes.ts file, and add an import statement for the new page. For example:
+
+```TypeScript
+import creatContact from "../pages/contact";
 ```
 
-4. In the JavaScript object, add the name of the <ins>route</ins> and <ins>handler function</ins> for the new page. You can use a regular expression in the path if a validation pattern is needed. For example:
+5. In the JavaScript object, add the name of the <ins>route</ins> and <ins>handler function</ins> for the new page. You can use a regular expression in the path if a validation pattern is needed. For example:
 
  ```TypeScript
 const routes: Routes = {
     // Create the user web page depending on data of a given user
-    "/user/\\d+": createUser;
+    "/contact": createContact;
 };
  ```
 
