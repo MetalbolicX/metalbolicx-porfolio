@@ -1,4 +1,4 @@
-import Page from "../../pkg/page/page";
+import Page from "../../pkg/node/node";
 import createError404View from "../views/error404-view";
 
 /**

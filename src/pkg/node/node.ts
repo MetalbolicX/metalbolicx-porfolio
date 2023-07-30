@@ -1,7 +1,7 @@
 /**
- * Represents a page with an HTML tag, view content, and optional CSS classes.
+ * Represents a new node to add in the DOM tree.
  */
-class Page {
+class DOMNode {
   private htmlTag: string = "";
   private view: string = "";
   private node: HTMLElement;
@@ -78,6 +78,31 @@ class Page {
   public get getNode(): HTMLElement {
     return this.node;
   }
+
+  /**
+   * Set an attribute to the new element.
+   * @param {string} name The name of the attribute.
+   * @param {string} value The value of the attribute
+   */
+  public setAttribute(name: string, value: string): void {
+    this.node.setAttribute(name, value);
+  }
+
+  /**
+ * Apply CSS styles on a given HTML element.
+ * @param {string} name - The name of the CSS property in the hyphenated format, e.g., "font-size", "background-color".
+ * @param {string} [value] - (Optional) The value to be set for the specified CSS property.
+ */
+  public setStyle(name: string, value: string): void {
+    // Convert the CSS property name from hyphenated format to camel case
+    const parsedName: string = name.replace(/-([a-z])/ig, (_all: string, letter: string) => {
+      return letter.toUpperCase();
+    });
+
+    if (typeof value !== "undefined") {
+      (this.node.style as any)[parsedName] = value;
+    }
+  }
 }
 
-export default Page;
+export default DOMNode;

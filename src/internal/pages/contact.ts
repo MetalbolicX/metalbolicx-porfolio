@@ -1,4 +1,4 @@
-import Page from "../../pkg/page/page";
+import Page from "../../pkg/node/node";
 import createContactView from "../views/contact-view";
 import {
   showTooltipIcon,
