@@ -49,10 +49,10 @@ To add a new page/route to the application, follow these steps:
 
 1. Create the new view with HTML for the content of the new page inside the `src/internal/views` folder.
 2. Create the new DOM node for the new page inside the `src/internal/pages` folder. If the new page requires a DOM node to listen to events, add the <ins>event listener function</ins> in the `src/internal/events` folder. Finally, add the listener to the specific element in the new view.
-3. Create a new page inside the `src/internal/pages`. In the file add `import Page from "../../pkg/page/page";`, In addition import the view and add the listener function in case the later are needed. The imported `Page class` helps to create the new content in the DOM. For example:
+3. Create a new page inside the `src/internal/pages`. In the file add `import Page from "../../pkg/node/node";`, In addition import the view and add the listener function in case the later are needed. The imported `Page class` helps to create the new content in the DOM. For example:
 
 ```TypeScript
-import Page from "../../pkg/page/page";
+import Page from "../../pkg/node/node";
 import createContactView from "../views/contact-view";
 import {
   showTooltipIcon,
