@@ -23,6 +23,12 @@ function createPortfolioView(): string {
                 D3 js library for common data visualization charts
               </a>
             </h3>
+            <details>
+              <summary>Details</summary>
+                <p>
+                  Forget to rewrite the code of the sames graphs in D3 js.
+                </p>
+            </details>
             <div class="icons">
               <a href="${projectsUrls.d3jslibrary}" target="_blank" class="icon">
                 <i class="fab fa-github"></i>
@@ -40,6 +46,12 @@ function createPortfolioView(): string {
                 Go web server
               </a>
             </h3>
+            <details>
+              <summary>Details</summary>
+                <p>
+                  Your personal basic robust web server.
+                </p>
+            </details>
             <div class="icons">
               <a href="${projectsUrls.gowebserver}" target="_blank" class="icon">
                 <i class="fab fa-github"></i>
@@ -57,6 +69,12 @@ function createPortfolioView(): string {
                 Master degree research publication
               </a>
             </h3>
+            <details>
+              <summary>Details</summary>
+                <p>
+                  Meet some semiconductor nanoparticles.
+                </p>
+            </details>
             <div class="icons">
               <a href="${projectsUrls.materialsscience}" target="_blank" class="icon">
                 <i class="fa-brands fa-researchgate"></i>

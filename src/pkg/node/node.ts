@@ -8,9 +8,9 @@ class DOMNode {
 
   /**
    * Create a new DOMNode instance.
-   * @param {string} htmlTag - The HTML tag name for the root element of the page.
-   * @param {string} view - The HTML content of the page.
-   * @param {string[]} [cssClasses=[]] - Optional CSS classes to apply to the root element.
+   * @param {string} htmlTag - The HTML tag name for creating a new element.
+   * @param {string} view - The HTML content of the children of the new element.
+   * @param {string[]} [cssClasses=[]] - Optional CSS classes to apply to the new element.
    * @throws {Error} Will throw an error if the HTML content is not in a valid format.
    */
   constructor(htmlTag: string, view: string, cssClasses: string[] = []) {

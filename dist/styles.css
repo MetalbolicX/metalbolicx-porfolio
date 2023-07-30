@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  list-style: none;
+  /* list-style: none; */
 }
 
 :root {
@@ -514,7 +514,7 @@ main {
         padding: 0.5em;
         font-size: 1.5rem;
         color: var(--color-white);
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
         width: 95%;
         display: flex;
         justify-content: center;
@@ -530,6 +530,20 @@ main {
         & a {
           text-align: justify;
           padding: 0.5em;
+        }
+      }
+
+      & details {
+        width: 95%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0.5em;
+        cursor: pointer;
+
+        & p {
+          font-size: 90%;
         }
       }
 
