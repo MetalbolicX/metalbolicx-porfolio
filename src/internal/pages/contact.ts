@@ -19,7 +19,6 @@ async function createContact(): Promise<HTMLElement> {
   contactPage.addListener(".contact-icon", "mouseout", hideTooltipIcon);
   contactPage.addListener("form", "submit", checkFormSubmit);
   return contactPage.getNode;
-
 }
 
 export default createContact;

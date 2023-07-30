@@ -7,7 +7,7 @@ class DOMNode {
   private node: HTMLElement;
 
   /**
-   * Create a new Page instance.
+   * Create a new DOMNode instance.
    * @param {string} htmlTag - The HTML tag name for the root element of the page.
    * @param {string} view - The HTML content of the page.
    * @param {string[]} [cssClasses=[]] - Optional CSS classes to apply to the root element.
