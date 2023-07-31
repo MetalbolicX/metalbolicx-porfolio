@@ -27,6 +27,9 @@ class Router {
     }
     this.paths = Object.keys(routes);
     this.currentRoute = "";
+
+    // Set up the popstate event listener to handle route changes
+    window.addEventListener("popstate", this.handleRouteChange.bind(this));
   }
 
   /**
@@ -34,11 +37,10 @@ class Router {
    * @returns {string} The parsed route from the browser's URL hash.
    * @private
    */
-  private getRouteHash(): string {
-    const urlHash: string = window.location.hash;
-    return urlHash.at(-1) === "/"
-      ? urlHash.slice(1, -1)
-      : urlHash.slice(1) || "/";
+  private getRoutePath(): string {
+    const url: string = window.location.pathname;
+    const parsedUrl: string = url.split("/").filter((letter: string) => letter !== "").join("/");
+    return !parsedUrl ? "/" : `/${parsedUrl}`;
   }
 
   /**
@@ -47,11 +49,13 @@ class Router {
    * @private
    */
   private findRoute(): string {
-    const route: string = this.getRouteHash();
-    return this.routes[route] ? route
+    const route: string = this.getRoutePath();
+    console.log("Aqui", route);
+    return this.routes[route]
+      ? route
       : this.paths.find((path: string) =>
-          new RegExp(`^${path}$`).test(route)
-        ) || "/error404";
+        new RegExp(`^${path}$`).test(route)
+      ) || "/error404";
   }
 
   /**
@@ -66,7 +70,7 @@ class Router {
     this.mainContainer?.append(await render());
   }
 
-    /**
+  /**
    * Get the CSS selector for the main container.
    * @type {string}
    * @protected
@@ -75,7 +79,7 @@ class Router {
     return this.containerSelector;
   }
 
-    /**
+  /**
    * Set the CSS selector for the main container.
    * @param {string} containerSelector - The CSS selector for the main container.
    * @throws {Error} Will throw an error if the containerSelector is an empty string.
@@ -83,7 +87,9 @@ class Router {
    */
   protected set setContainerSelector(containerSelector: string) {
     if (containerSelector === "") {
-      throw new Error(" The empty string is an invalid container for CSS selector");
+      throw new Error(
+        " The empty string is an invalid container for CSS selector"
+      );
     }
     this.containerSelector = containerSelector;
   }
@@ -92,8 +98,25 @@ class Router {
    * Start the router and listen for changes in the route in the single web page application.
    */
   init(): void {
-    window.addEventListener("hashchange", this.handleRouteChange.bind(this));
+    // window.addEventListener("hashchange", this.handleRouteChange.bind(this));
     this.handleRouteChange();
+
+    // Use history.pushState to change the URL when navigating between routes
+    const handleLinkClick = (event: Event) => {
+      const target = event.target as HTMLAnchorElement;
+      if (
+        target.tagName === "A" &&
+        target.href.startsWith(window.location.origin)
+      ) {
+        event.preventDefault();
+        // const path = target.pathname;
+        const path: string = target.href.split("#").at(-1) || "";
+        history.pushState({}, "It is working", path);
+        this.handleRouteChange();
+      }
+    };
+
+    document.body.addEventListener("click", handleLinkClick);
   }
 }
 

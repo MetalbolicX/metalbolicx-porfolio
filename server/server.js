@@ -7,7 +7,9 @@ const ROOTDIRECTORY = path.dirname(fileURLToPath(new URL(import.meta.url))).spli
 
 const server = http.createServer((req, res) => {
   // Set content type based on file extension
-  const parsedUrl = req.url?.split("/").at(-1) || "index.html";
+  const parsedUrl = req.url?.split("/").find((str) => new RegExp(/\w+\.[a-z]{1,5}/g).test(str)) || "index.html";
+  console.log("GET: ", parsedUrl);
+  console.log("--------------------------------");
   const filePath = path.join(ROOTDIRECTORY, "dist", `/${parsedUrl}`);
   const contentType = getContentType(filePath);
 
