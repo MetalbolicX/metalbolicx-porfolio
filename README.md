@@ -25,7 +25,8 @@ Welcome to my personal portfolio, built using the architecture of a single-page 
 
 ## Features
 
-- [x] Validation of the routes of the web page using **regular expressions**.
+- [x] The router has the ability to take advantage of the **browser's navigation history**.
+- [x] The routes of the web page can be validated using **regular expressions**.
 - [x] It can handle a not existing route with a **404 error page**.
 - [x] It can add **event listeners** to the DOM of a given page.
 
