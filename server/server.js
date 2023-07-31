@@ -3,11 +3,18 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const ROOTDIRECTORY = path.dirname(fileURLToPath(new URL(import.meta.url))).split(path.sep).slice(0, -1).join(path.sep);
+const ROOTDIRECTORY = path
+  .dirname(fileURLToPath(new URL(import.meta.url)))
+  .split(path.sep)
+  .slice(0, -1)
+  .join(path.sep);
 
 const server = http.createServer((req, res) => {
   // Set content type based on file extension
-  const parsedUrl = req.url?.split("/").find((str) => new RegExp(/\w+\.[a-z]{1,5}/g).test(str)) || "index.html";
+  const parsedUrl =
+    req.url
+      ?.split("/")
+      .find((str) => new RegExp(/\w+\.[a-z]{1,5}/g).test(str)) || "index.html";
   console.log("GET: ", parsedUrl);
   console.log("--------------------------------");
   const filePath = path.join(ROOTDIRECTORY, "dist", `/${parsedUrl}`);
@@ -48,7 +55,7 @@ function getContentType(filePath) {
   const contentsTypes = {
     ".html": "text/html",
     ".css": "text/css",
-    ".js": "text/javascript"
+    ".js": "text/javascript",
   };
   const fileExtension = path.extname(filePath);
   return contentsTypes[fileExtension] || "text/plain";

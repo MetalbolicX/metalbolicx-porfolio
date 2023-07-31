@@ -39,7 +39,9 @@ class Router {
    */
   private getRoutePath(): string {
     const url: string = window.location.pathname;
-    const parsedUrl: string = url.split("/").filter((letter: string) => letter !== "").join("/");
+    const parsedUrl: string = url.split("/")
+      .filter((path: string) => path !== "")
+      .join("/");
     return !parsedUrl ? "/" : `/${parsedUrl}`;
   }
 
@@ -50,7 +52,6 @@ class Router {
    */
   private findRoute(): string {
     const route: string = this.getRoutePath();
-    console.log("Aqui", route);
     return this.routes[route]
       ? route
       : this.paths.find((path: string) =>
