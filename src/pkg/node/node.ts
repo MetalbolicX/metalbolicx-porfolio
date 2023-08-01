@@ -35,7 +35,9 @@ class DOMNode {
   }
 
   protected checkForJSInHTMLTag(): boolean {
-    return new RegExp(/^<\/?\w+(?=(?:\s+[oO][nN]\w+=(?:"[^"]*"|'[^']*')))[^>]*>$/i).test(this.view);
+    return new RegExp(
+      /^<\/?\w+(?=(?:\s+[oO][nN]\w+=(?:"[^"]*"|'[^']*')))[^>]*>$/i
+    ).test(this.view);
   }
 
   protected checkForScriptTag(): boolean {
@@ -49,8 +51,7 @@ class DOMNode {
    * @protected
    */
   protected set setView(view: string) {
-
-    if(this.checkForJSInHTMLTag() || this.checkForJSInHTMLTag()) {
+    if (this.checkForJSInHTMLTag() || this.checkForJSInHTMLTag()) {
       throw new Error("Do not add HTML tags that contains JavaScript code");
     }
 
@@ -102,15 +103,18 @@ class DOMNode {
   }
 
   /**
- * Apply CSS styles on a given HTML element.
- * @param {string} name - The name of the CSS property in the hyphenated format, e.g., "font-size", "background-color".
- * @param {string} [value] - (Optional) The value to be set for the specified CSS property.
- */
+   * Apply CSS styles on a given HTML element.
+   * @param {string} name - The name of the CSS property in the hyphenated format, e.g., "font-size", "background-color".
+   * @param {string} [value] - (Optional) The value to be set for the specified CSS property.
+   */
   public setStyle(name: string, value: string): void {
     // Convert the CSS property name from hyphenated format to camel case
-    const parsedName: string = name.replace(/-([a-z])/ig, (_all: string, letter: string) => {
-      return letter.toUpperCase();
-    });
+    const parsedName: string = name.replace(
+      /-([a-z])/gi,
+      (_all: string, letter: string) => {
+        return letter.toUpperCase();
+      }
+    );
 
     if (typeof value !== "undefined") {
       (this.node.style as any)[parsedName] = value;

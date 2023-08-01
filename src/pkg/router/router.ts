@@ -39,7 +39,8 @@ class Router {
    */
   private getRoutePath(): string {
     const url: string = window.location.pathname;
-    const parsedUrl: string = url.split("/")
+    const parsedUrl: string = url
+      .split("/")
       .filter((path: string) => path !== "")
       .join("/");
     return !parsedUrl ? "/" : `/${parsedUrl}`;
@@ -55,8 +56,8 @@ class Router {
     return this.routes[route]
       ? route
       : this.paths.find((path: string) =>
-        new RegExp(`^${path}$`).test(route)
-      ) || "/error404";
+          new RegExp(`^${path}$`).test(route)
+        ) || "/error404";
   }
 
   /**
