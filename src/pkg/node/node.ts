@@ -34,6 +34,14 @@ class DOMNode {
     this.htmlTag = htmlTag.toLocaleLowerCase();
   }
 
+  protected checkForJSInHTMLTag(): boolean {
+    return new RegExp(/^<\/?\w+(?=(?:\s+[oO][nN]\w+=(?:"[^"]*"|'[^']*')))[^>]*>$/i).test(this.view);
+  }
+
+  protected checkForScriptTag(): boolean {
+    return new RegExp(/^<\/?script>.*?$/i).test(this.view);
+  }
+
   /**
    * Set the HTML content of the page.
    * @param {string} view - The HTML content.
@@ -41,7 +49,12 @@ class DOMNode {
    * @protected
    */
   protected set setView(view: string) {
-    if (new RegExp(/<[a-z]{1,15}.*?\/?>/).test(view)) {
+
+    if(this.checkForJSInHTMLTag() || this.checkForJSInHTMLTag()) {
+      throw new Error("Do not add HTML tags that contains JavaScript code");
+    }
+
+    if (new RegExp(/<\w+.*?\/?>/i).test(view)) {
       this.view = view;
     } else {
       throw new Error("Invalid HTML format");

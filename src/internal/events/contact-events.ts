@@ -37,7 +37,7 @@ function checkFormSubmit(event: Event): void {
 
   const isSanitized: boolean = formInputs.some(
     (formInput: HTMLInputElement | HTMLTextAreaElement) =>
-      new RegExp(/<\/?[a-zA-Z]{1,15}.*?>/).test(formInput.value)
+      new RegExp(/<\/?\w+.*?>/).test(formInput.value)
   );
 
   if (isSanitized) {
