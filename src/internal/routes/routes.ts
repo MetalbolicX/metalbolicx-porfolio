@@ -15,8 +15,7 @@ const routes: Routes = {
   "/contact": createContact,
   "/about": createAbout,
   "/portfolio": createPortfolio,
-  "/\\d+": createContact,
   "/error404": createError404
-};
+} as const;
 
 export default routes;
