@@ -40,8 +40,8 @@ class DOMNode {
     ).test(this.view);
   }
 
-  protected checkForScriptTag(): boolean {
-    return new RegExp(/^<\/?script>.*?$/i).test(this.view);
+  protected checkForScriptTag(value: string): boolean {
+    return new RegExp(/^<\/?script(\s\w+=["'])?.*?>$/i).test(value);
   }
 
   /**
@@ -51,7 +51,7 @@ class DOMNode {
    * @protected
    */
   protected set setView(view: string) {
-    if (this.checkForJSInHTMLTag() || this.checkForJSInHTMLTag()) {
+    if (this.checkForJSInHTMLTag() || this.checkForScriptTag(this.view)) {
       throw new Error("Do not add HTML tags that contains JavaScript code");
     }
 
@@ -99,6 +99,13 @@ class DOMNode {
    * @param {string} value The value of the attribute
    */
   public setAttribute(name: string, value: string): void {
+    if (
+      new RegExp(/^[oO][nN]\w+$/i).test(name) ||
+      this.checkForScriptTag(value)
+    ) {
+      throw new Error("Problem with XSS attack");
+    }
+
     this.node.setAttribute(name, value);
   }
 
