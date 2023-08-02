@@ -83,75 +83,7 @@ function createAboutView(): string {
     </section>
     <h4 class="stat-title">My Timeline</h4>
     <section class="timeline">
-      <div class="timeline-item">
-        <div class="tl-icon">
-          <i class="fas fa-briefcase"></i>
-        </div>
-        <p class="tl-duration">2018 - present</p>
-        <h5>Data analysts<span> - Freelance</span></h5>
-        <details>
-          <summary>Details</summary>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-            quasi vero fugit.
-          </p>
-        </details>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-icon">
-          <i class="fas fa-briefcase"></i>
-        </div>
-        <p class="tl-duration">2008 - 2011</p>
-        <h5>Software Engineer<span> - Boogle, Inc.</span></h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-          quasi vero fugit.
-        </p>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-icon">
-          <i class="fas fa-briefcase"></i>
-        </div>
-        <p class="tl-duration">2016 - 2017</p>
-        <h5>C++ Programmer<span> - Slime Tech</span></h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-          quasi vero fugit.
-        </p>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-icon">
-          <i class="fas fa-briefcase"></i>
-        </div>
-        <p class="tl-duration">2009 - 2013</p>
-        <h5>Business Degree<span> - Sussex University</span></h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-          quasi vero fugit.
-        </p>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-icon">
-          <i class="fas fa-briefcase"></i>
-        </div>
-        <p class="tl-duration">2013 - 2016</p>
-        <h5>Computer Science Degree<span> - Brookes University</span></h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-          quasi vero fugit.
-        </p>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-icon">
-          <i class="fas fa-briefcase"></i>
-        </div>
-        <p class="tl-duration">2017 - present</p>
-        <h5>3d Animation<span> - Brighton University</span></h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-          quasi vero fugit.
-        </p>
-      </div>
+      ${jobs}
     </section>`;
 }
 
@@ -169,15 +101,27 @@ function technologiesUsedElements(): string {
       <a href="${tech.orgUrl}" target="_blank">
         <img src="${tech.iconUrl}" alt="${tech.techName}"/>
       </a>
-    `).join("");
+    `
+    )
+    .join("");
 }
 
+/**
+ * The HTML with all the jobs in which I worked professionally.
+ */
 function jobItems(): string {
-  return workJobs.map(job => {
-    const paragraphs: string = job.activities.map(
-      (paragraph: string) => `<p>${paragraph}</p>`
-      ).join("");
-    return /*html*/`
+  return workJobs
+    .map(
+      (job: {
+        duration: string;
+        name: string;
+        place: string;
+        activities: string[];
+      }) => {
+        const paragraphs: string = job.activities
+          .map((paragraph: string) => `<p>${paragraph}</p>`)
+          .join("");
+        return /*html*/ `
     <div class="timeline-item">
       <div class="tl-icon">
         <i class="fas fa-briefcase"></i>
@@ -188,8 +132,10 @@ function jobItems(): string {
         <summary>Details</summary>
           ${paragraphs}
       </details>
-    </div>`
-  }).join("");
+    </div>`;
+      }
+    )
+    .join("");
 }
 
 export default createAboutView;
