@@ -106,12 +106,12 @@ class Router {
     // Use history.pushState to change the URL when navigating between routes
     const handleLinkClick = (event: Event) => {
       const target = event.target as HTMLAnchorElement;
+      const origin: string = window.location.origin;
       if (
         target.tagName === "A" &&
-        target.href.startsWith(window.location.origin)
+        target.href.startsWith(origin)
       ) {
         event.preventDefault();
-        // const path = target.pathname;
         const path: string = target.href.split("#").at(-1) || "";
         history.pushState({}, "It is working", path);
         this.handleRouteChange();
