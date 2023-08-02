@@ -11,7 +11,9 @@ function addNavigationBar(): HTMLElement[] {
       (section: string) => window.location.pathname.includes(section)
     );
   // In case the root path of the application
-  sectionTocolor = sectionTocolor < 0 ? 0 : sectionTocolor;
+  if (sectionTocolor < 0) {
+    sectionTocolor++;
+  }
   const buttons: HTMLElement[] = sections.map((section: string, index: number) => {
     const button: DOMNode = new DOMNode(
       "div",

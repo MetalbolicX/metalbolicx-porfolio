@@ -111,3 +111,35 @@ export const technologiesKnown: {
 ];
 
 export const emailVerifyKey: string = "ca1bcca51e124d2a9c5b2ebbe41856e8";
+
+export const workJobs: {
+  duration: string;
+  name: string;
+  place: string;
+  activities: string[];
+}[] = [
+  {
+    duration: "2018 - present",
+    name: "Certified personal trainer",
+    place: "Self employment",
+    activities: ["Muscle gain.", "Fat loss."]
+  },
+  {
+    duration: "2018 - present",
+    name: "Data analysts",
+    place: "Freelance",
+    activities: ["Microsoft Excel tutoring.", "Data visualization."]
+  },
+  {
+    duration: "2015 - 2017",
+    name: "Master's research student",
+    place: "Conjunto Centro de Investigación Química Sustentable",
+    activities: ["Data curation.", "Research writing."]
+  },
+  {
+    duration: "2012 - 2013",
+    name: "Project and product engineer",
+    place: "ElringKlinger Mexico",
+    activities: ["Project managment.", "Quality test."]
+  }
+];

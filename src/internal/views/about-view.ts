@@ -1,4 +1,4 @@
-import { urls, technologiesKnown } from "../utils/constants";
+import { urls, technologiesKnown, workJobs } from "../utils/constants";
 
 /**
  * Create the HTML view of the about page.
@@ -6,6 +6,7 @@ import { urls, technologiesKnown } from "../utils/constants";
  */
 function createAboutView(): string {
   const technologies: string = technologiesUsedElements();
+  const jobs: string = jobItems();
   return /*html*/ `
     <header class="main-title">
       <h2>About <span>me</span><span class="bg-text">my stats</span></h2>
@@ -88,10 +89,13 @@ function createAboutView(): string {
         </div>
         <p class="tl-duration">2018 - present</p>
         <h5>Data analysts<span> - Freelance</span></h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-          quasi vero fugit.
-        </p>
+        <details>
+          <summary>Details</summary>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
+            quasi vero fugit.
+          </p>
+        </details>
       </div>
       <div class="timeline-item">
         <div class="tl-icon">
@@ -165,9 +169,27 @@ function technologiesUsedElements(): string {
       <a href="${tech.orgUrl}" target="_blank">
         <img src="${tech.iconUrl}" alt="${tech.techName}"/>
       </a>
-    `
-    )
-    .join("");
+    `).join("");
+}
+
+function jobItems(): string {
+  return workJobs.map(job => {
+    const paragraphs: string = job.activities.map(
+      (paragraph: string) => `<p>${paragraph}</p>`
+      ).join("");
+    return /*html*/`
+    <div class="timeline-item">
+      <div class="tl-icon">
+        <i class="fas fa-briefcase"></i>
+      </div>
+      <p class="tl-duration">${job.duration}</p>
+      <h5>${job.name}<span> - ${job.place}</span></h5>
+      <details>
+        <summary>Details</summary>
+          ${paragraphs}
+      </details>
+    </div>`
+  }).join("");
 }
 
 export default createAboutView;
