@@ -15,7 +15,7 @@ const server = http.createServer((req, res) => {
     req.url
       ?.split("/")
       .find((str) => new RegExp(/\w+\.[a-z]{1,5}/g).test(str)) || "index.html";
-  console.log(`GET: ${parsedUrl} at ${ISOFormatDate()}`);
+  console.log(`GET: ${parsedUrl} at ${new Date()}`);
   console.log("----------");
   const filePath = path.join(ROOTDIRECTORY, "dist", `/${parsedUrl}`);
   const contentType = getContentType(filePath);
@@ -59,21 +59,4 @@ function getContentType(filePath) {
   };
   const fileExtension = path.extname(filePath);
   return contentsTypes[fileExtension] || "text/plain";
-}
-
-/**
- * Formats the now data to ISO.
- * @returns {string} A day formated
- */
-function ISOFormatDate() {
-  const now = new Date();
-
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  const hour = String(now.getHours()).padStart(2, '0');
-  const minute = String(now.getMinutes()).padStart(2, '0');
-  const second = String(now.getSeconds()).padStart(2, '0');
-
-  return `${year}-${month}-${day} ${hour}:${minute}:${second}`
 }

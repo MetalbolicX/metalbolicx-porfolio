@@ -33,18 +33,6 @@ export const personalInfoContact: {
   languages: "Spanish (native), English",
 };
 
-export const projectsUrls: {
-  d3jslibrary: string;
-  gowebserver: string;
-  materialsscience: string;
-} = {
-  d3jslibrary: `${urls.github}/common-charts-js`,
-  gowebserver: `${urls.github}/vanilla-go-webserver`,
-  materialsscience:
-    "https://www.sciencedirect.com/science/article/abs/pii/S0254058421005265",
-};
-
-
 const devIconUrl: string = [
   "https://cdn.jsdelivr.net",
   "gh",
@@ -143,3 +131,37 @@ export const workJobs: {
     activities: ["Project managment.", "Quality test."]
   }
 ];
+
+export const projects: {
+  imageurl: string;
+  descriptionurl: string;
+  title: string;
+  summary: string;
+  projecturl: string;
+  iconclass: string;
+}[] = [
+  {
+    imageurl: "https://cdn.pixabay.com/photo/2021/05/11/17/21/charts-6246450_1280.png",
+    descriptionurl: "#",
+    title: "D3 js library for common data visualization charts",
+    summary: "Forget to rewrite the code of the sames graphs in D3 js.",
+    projecturl: `${urls.github}/common-charts-js`,
+    iconclass: "fab fa-github"
+  },
+  {
+    imageurl: "https://cdn.pixabay.com/photo/2020/06/25/14/21/server-icons-5339848_1280.png",
+    descriptionurl: "#",
+    title: "Go web server",
+    summary: "Your personal basic robust web server.",
+    projecturl: `${urls.github}/vanilla-go-webserver`,
+    iconclass: "fab fa-github"
+  },
+  {
+    imageurl: "https://ars.els-cdn.com/content/image/X02540584.jpg",
+    descriptionurl: "#",
+    title: "Master degree research publication",
+    summary: "Meet some semiconductor nanoparticles.",
+    projecturl: "https://www.sciencedirect.com/science/article/abs/pii/S0254058421005265",
+    iconclass: "fa-brands fa-researchgate"
+  }
+]
