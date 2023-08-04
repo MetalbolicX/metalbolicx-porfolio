@@ -1,4 +1,7 @@
-import { RouteHandler, Routes } from "../../internal/routes/routes";
+type RouteHandler = () => Promise<HTMLElement>;
+interface Routes {
+  [key: string]: RouteHandler;
+}
 
 /**
  * Router handle the routes in the single web page application.
@@ -43,7 +46,7 @@ class Router {
       .split("/")
       .filter((path: string) => path !== "")
       .join("/");
-    return !parsedUrl ? "/" : `/${parsedUrl}`;
+    return `/${parsedUrl}` || "/";
   }
 
   /**
