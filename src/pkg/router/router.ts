@@ -42,7 +42,7 @@ class Router {
    */
   private getRoutePath(): string {
     const url: string = window.location.pathname;
-    const parsedUrl: string = url
+    const parsedUrl: string = url.toLowerCase()
       .split("/")
       .filter((path: string) => path !== "")
       .join("/");
