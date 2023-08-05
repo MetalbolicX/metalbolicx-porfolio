@@ -10,11 +10,9 @@ import {
  * Create the HTML section element of contact page.
  */
 async function createContact(): Promise<HTMLElement> {
-  const contactPage: Page = new Page("main", createContactView(), [
-    "contact",
-    "container",
-    "active",
-  ]);
+  const contactPage: Page = new Page("main");
+  contactPage.setView = createContactView();
+  contactPage.setAttr("class", "contact.container.active");
   contactPage.addListener(".contact-icon", "mouseover", showTooltipIcon);
   contactPage.addListener(".contact-icon", "mouseout", hideTooltipIcon);
   contactPage.addListener("form", "submit", checkFormSubmit);

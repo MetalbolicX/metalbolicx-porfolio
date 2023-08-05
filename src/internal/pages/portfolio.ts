@@ -6,11 +6,9 @@ import { showDetails } from "../events/portfolio-events";
  * Create the portfolio section of the web page.
  */
 async function createPortfolio(): Promise<HTMLElement> {
-  const portfolioPage: Page = new Page("main", createPortfolioView(), [
-    "portfolio",
-    "container",
-    "active",
-  ]);
+  const portfolioPage: Page = new Page("main");
+  portfolioPage.setView = createPortfolioView();
+  portfolioPage.setAttr("class", "portfolio.container.active");
   portfolioPage.addListener(".portfolios", "mouseover", showDetails)
   return portfolioPage.getNode;
 }

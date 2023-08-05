@@ -3,26 +3,20 @@
  */
 class DOMNode {
   private htmlTag: string = "";
-  private view: string = "";
   private node: HTMLElement;
 
   /**
    * Create a new DOMNode instance.
    * @param {string} htmlTag - The HTML tag name for creating a new element.
-   * @param {string} view - The HTML content of the children of the new element.
-   * @param {string[]} [cssClasses=[]] - Optional CSS classes to apply to the new element.
-   * @throws {Error} Will throw an error if the HTML content is not in a valid format.
+   * @throws {Error} Will throw an error if the HTML is not in a valid tag.
    */
-  constructor(htmlTag: string, view: string, cssClasses: string[] = []) {
+  constructor(htmlTag: string) {
     this.setHTMLTag = htmlTag;
-    this.setView = view;
+    // this.setView = view;
     this.node = document.createElement(this.htmlTag);
-    if (cssClasses.length > 0) {
-      for (const cssClass of cssClasses) {
-        this.node.classList.add(cssClass);
-      }
+    if (!this.node) {
+      throw new Error(`The ${this.htmlTag} is not a valid HTML element`);
     }
-    this.node.innerHTML = this.view;
   }
 
   /**
@@ -34,10 +28,10 @@ class DOMNode {
     this.htmlTag = htmlTag.toLocaleLowerCase();
   }
 
-  protected checkForJSInHTMLTag(): boolean {
+  protected checkForJSInHTMLTag(value: string): boolean {
     return new RegExp(
       /^<\/?\w+(?=(?:\s+[oO][nN]\w+=(?:"[^"]*"|'[^']*')))[^>]*>$/i
-    ).test(this.view);
+    ).test(value);
   }
 
   protected checkForScriptTag(value: string): boolean {
@@ -50,13 +44,13 @@ class DOMNode {
    * @throws {Error} Will throw an error if the HTML content is not in a valid format.
    * @protected
    */
-  protected set setView(view: string) {
-    if (this.checkForJSInHTMLTag() || this.checkForScriptTag(this.view)) {
+  public set setView(view: string) {
+    if (this.checkForJSInHTMLTag(view) || this.checkForScriptTag(view)) {
       throw new Error("Do not add HTML tags that contains JavaScript code");
     }
 
     if (new RegExp(/<\w+.*?\/?>/i).test(view)) {
-      this.view = view;
+      this.node.innerHTML = view;
     } else {
       throw new Error("Invalid HTML format");
     }
@@ -98,7 +92,7 @@ class DOMNode {
    * @param {string} name The name of the attribute.
    * @param {string} value The value of the attribute
    */
-  public setAttribute(name: string, value: string): void {
+  public setAttr(name: string, value: string): void {
     if (
       new RegExp(/^[oO][nN]\w+$/i).test(name) ||
       this.checkForScriptTag(value)
@@ -106,7 +100,14 @@ class DOMNode {
       throw new Error("Problem with XSS attack");
     }
 
-    this.node.setAttribute(name, value);
+    if (name === "class") {
+      const cssClasses: string[] = value.split(".");
+      cssClasses.forEach((cssClass: string) =>
+        this.node.classList.add(cssClass)
+      );
+    } else {
+      this.node.setAttribute(name, value);
+    }
   }
 
   /**
