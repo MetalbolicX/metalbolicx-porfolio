@@ -12,7 +12,6 @@ class DOMNode {
    */
   constructor(htmlTag: string) {
     this.setHTMLTag = htmlTag;
-    // this.setView = view;
     this.node = document.createElement(this.htmlTag);
     if (!this.node) {
       throw new Error(`The ${this.htmlTag} is not a valid HTML element`);
@@ -39,46 +38,6 @@ class DOMNode {
   }
 
   /**
-   * Set the HTML content of the page.
-   * @param {string} view - The HTML content.
-   * @throws {Error} Will throw an error if the HTML content is not in a valid format.
-   * @protected
-   */
-  public set setView(view: string) {
-    if (this.checkForJSInHTMLTag(view) || this.checkForScriptTag(view)) {
-      throw new Error("Do not add HTML tags that contains JavaScript code");
-    }
-
-    if (new RegExp(/<\w+.*?\/?>/i).test(view)) {
-      this.node.innerHTML = view;
-    } else {
-      throw new Error("Invalid HTML format");
-    }
-  }
-
-  /**
-   * Add an event listener to a specific element within the page.
-   * @param {string} tagSelector - The CSS selector to select the element.
-   * @param {string} eventName - The name of the event to listen for (e.g., 'click', 'change').
-   * @param {function} listener - The event listener function to be executed when the event occurs.
-   * @throws {Error} Will throw an error if the CSS selector does not match any element.
-   */
-  public addListener(
-    tagSelector: string,
-    eventName: string,
-    listener: (e: Event) => void
-  ): void {
-    const tagSelected: HTMLElement | null =
-      this.node.querySelector(tagSelector);
-    if (!tagSelected) {
-      throw new Error(
-        "The CSS selector which add the listener is not available"
-      );
-    }
-    tagSelected?.addEventListener(eventName, listener);
-  }
-
-  /**
    * Get the root element of the page.
    * @type {HTMLElement}
    * @readonly
@@ -88,11 +47,73 @@ class DOMNode {
   }
 
   /**
-   * Set an attribute to the new element.
-   * @param {string} name The name of the attribute.
-   * @param {string} value The value of the attribute
+   * Set the HTML content of the page.
+   * @param {string} htmlView - The HTML content.
+   * @returns {DOMNode} - The current DOMNode instance.
+   * @throws {Error} Will throw an error if the HTML content is not in a valid format.
+   * @protected
    */
-  public setAttr(name: string, value: string): void {
+  public setHTML(htmlView: string): DOMNode {
+    if (
+      this.checkForJSInHTMLTag(htmlView) ||
+      this.checkForScriptTag(htmlView)
+    ) {
+      throw new Error("Do not add HTML tags that contain JavaScript code");
+    }
+
+    if (new RegExp(/<\w+.*?\/?>/i).test(htmlView)) {
+      this.node.innerHTML = htmlView;
+    } else {
+      throw new Error("Invalid HTML format");
+    }
+
+    return this;
+  }
+
+  /**
+   * Add an event listener to the current node.
+   * @param {string} eventName - The name of the event to listen for (e.g., 'click', 'change').
+   * @param {function} listener - The event listener function to be executed when the event occurs.
+   * @returns {DOMNode} - The current DOMNode instance.
+   */
+  public addListenerToNode(
+    eventName: string,
+    listener: (e: Event) => void
+  ): DOMNode {
+    this.node.addEventListener(eventName, listener);
+    return this;
+  }
+
+  /**
+   * Add an event listener to a specific descendant element within the current node.
+   * @param {string} tagSelector - The CSS selector to select the descendant element.
+   * @param {string} eventName - The name of the event to listen for (e.g., 'click', 'change').
+   * @param {function} listener - The event listener function to be executed when the event occurs.
+   * @returns {DOMNode} - The current DOMNode instance.
+   * @throws {Error} Will throw an error if the CSS selector does not match any element.
+   */
+  public addListenerToDescendant(
+    tagSelector: string,
+    eventName: string,
+    listener: (e: Event) => void
+  ): DOMNode {
+    const descendant: HTMLElement | null = this.node.querySelector(tagSelector);
+    if (!descendant) {
+      throw new Error(
+        "The CSS selector does not match any descendant element."
+      );
+    }
+    descendant.addEventListener(eventName, listener);
+    return this;
+  }
+
+  /**
+   * Apply attributes to the current node.
+   * @param {string} name The name of the attribute.
+   * @param {string} value The value of the attribute.
+   * @returns {DOMNode} - The current DOMNode instance.
+   */
+  public setAttr(name: string, value: string): DOMNode {
     if (
       new RegExp(/^[oO][nN]\w+$/i).test(name) ||
       this.checkForScriptTag(value)
@@ -108,14 +129,16 @@ class DOMNode {
     } else {
       this.node.setAttribute(name, value);
     }
+    return this;
   }
 
   /**
-   * Apply CSS styles on a given HTML element.
-   * @param {string} name - The name of the CSS property in the hyphenated format, e.g., "font-size", "background-color".
-   * @param {string} [value] - (Optional) The value to be set for the specified CSS property.
+   * Apply CSS styles to the current node.
+   * @param {string} name - The name of the CSS property in the hyphenated format.
+   * @param {string} value - The value to be set for the specified CSS property.
+   * @returns {DOMNode} - The current DOMNode instance.
    */
-  public setStyle(name: string, value: string): void {
+  public setStyle(name: string, value: string): DOMNode {
     // Convert the CSS property name from hyphenated format to camel case
     const parsedName: string = name.replace(
       /-([a-z])/gi,
@@ -124,9 +147,19 @@ class DOMNode {
       }
     );
 
-    if (typeof value !== "undefined") {
-      (this.node.style as any)[parsedName] = value;
-    }
+    (this.node.style as any)[parsedName] = value;
+    return this;
+  }
+
+  /**
+   * Append a new child element to the current node.
+   * @param {string} htmlTag - The HTML tag name for creating a new child element.
+   * @returns {DOMNode} - The newly appended child element as a DOMNode instance.
+   */
+  public append(htmlTag: string): DOMNode {
+    const childNode = new DOMNode(htmlTag);
+    this.node.appendChild(childNode.node);
+    return childNode;
   }
 }
 

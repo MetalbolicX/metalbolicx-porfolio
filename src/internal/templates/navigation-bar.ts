@@ -16,18 +16,20 @@ function addNavigationBar(): HTMLElement[] {
   }
   const buttons: HTMLElement[] = sections.map(
     (section: string, index: number) => {
-      const button: DOMNode = new DOMNode("div");
-      button.setView = /*html*/ `
-      <span class="page-name">${section}</span>
-        <a href="#/${section}/">
-          <i class="fas fa-${navIcons.at(index)}"></i>
-        </a>
-      `;
-      button.setAttribute(
-        "class",
-        index === sectionTocolor ? "control.active-btn" : "control"
-      );
-      button.setAttribute("data-id", section);
+      const button: DOMNode = new DOMNode("div")
+        .setHTML(
+          /*html*/ `
+          <span class="page-name">${section}</span>
+            <a href="#/${section}/">
+              <i class="fas fa-${navIcons.at(index)}"></i>
+            </a>
+          `
+        )
+        .setAttr(
+          "class",
+          index === sectionTocolor ? "control.active-btn" : "control"
+        )
+        .setAttr("data-id", section);
       return button.getNode;
     }
   );
