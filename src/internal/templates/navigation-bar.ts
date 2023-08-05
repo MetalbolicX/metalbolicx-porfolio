@@ -35,9 +35,9 @@ function createNavigationBar(): HTMLElement {
   );
 
   const navigatioBar: DOMNode = new DOMNode("nav")
-    .setAttr("class", "controls");
+    .setAttr("class", "controls")
+    .on("click", colorNavigationBar);
   navigatioBar.getNode.append(...buttons);
-  navigatioBar.on("click", colorNavigationBar);
 
   return navigatioBar.getNode;
 }
