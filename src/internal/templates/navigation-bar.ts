@@ -10,26 +10,25 @@ function addNavigationBar(): HTMLElement[] {
   let sectionTocolor: number = sections.findIndex((section: string) =>
     window.location.pathname.includes(section)
   );
-  // In case the root path of the application
+  // In case its the root path of the application
   if (sectionTocolor < 0) {
     sectionTocolor++;
   }
   const buttons: HTMLElement[] = sections.map(
     (section: string, index: number) => {
       const button: DOMNode = new DOMNode("div")
-        .setHTML(
-          /*html*/ `
-          <span class="page-name">${section}</span>
-            <a href="#/${section}/">
-              <i class="fas fa-${navIcons.at(index)}"></i>
-            </a>
-          `
-        )
         .setAttr(
           "class",
           index === sectionTocolor ? "control.active-btn" : "control"
         )
-        .setAttr("data-id", section);
+        .setAttr("data-id", section)
+        .append("span")
+        .setAttr("class", "page-name")
+        .setText(section)
+        .append("a")
+        .setAttr("href", `#/${section}/`)
+        .append("i", true)
+        .setAttr("class", `fas.fa-${navIcons.at(index)}`)
       return button.getNode;
     }
   );

@@ -3,7 +3,8 @@
  */
 class DOMNode {
   private htmlTag: string = "";
-  private node: HTMLElement;
+  private rootNode: HTMLElement;
+  private currentNode: HTMLElement;
 
   /**
    * Create a new DOMNode instance.
@@ -12,10 +13,11 @@ class DOMNode {
    */
   constructor(htmlTag: string) {
     this.setHTMLTag = htmlTag;
-    this.node = document.createElement(this.htmlTag);
-    if (!this.node) {
+    this.rootNode = document.createElement(this.htmlTag);
+    if (!this.rootNode) {
       throw new Error(`The ${this.htmlTag} is not a valid HTML element`);
     }
+    this.currentNode = this.rootNode;
   }
 
   /**
@@ -43,7 +45,7 @@ class DOMNode {
    * @readonly
    */
   public get getNode(): HTMLElement {
-    return this.node;
+    return this.rootNode;
   }
 
   /**
@@ -62,7 +64,7 @@ class DOMNode {
     }
 
     if (new RegExp(/<\w+.*?\/?>/i).test(htmlView)) {
-      this.node.innerHTML = htmlView;
+      this.currentNode.innerHTML = htmlView;
     } else {
       throw new Error("Invalid HTML format");
     }
@@ -80,7 +82,7 @@ class DOMNode {
     eventName: string,
     listener: (e: Event) => void
   ): DOMNode {
-    this.node.addEventListener(eventName, listener);
+    this.currentNode.addEventListener(eventName, listener);
     return this;
   }
 
@@ -97,7 +99,7 @@ class DOMNode {
     eventName: string,
     listener: (e: Event) => void
   ): DOMNode {
-    const descendant: HTMLElement | null = this.node.querySelector(tagSelector);
+    const descendant: HTMLElement | null = this.currentNode.querySelector(tagSelector);
     if (!descendant) {
       throw new Error(
         "The CSS selector does not match any descendant element."
@@ -124,10 +126,10 @@ class DOMNode {
     if (name === "class") {
       const cssClasses: string[] = value.split(".");
       cssClasses.forEach((cssClass: string) =>
-        this.node.classList.add(cssClass)
+        this.currentNode.classList.add(cssClass)
       );
     } else {
-      this.node.setAttribute(name, value);
+      this.currentNode.setAttribute(name, value);
     }
     return this;
   }
@@ -147,19 +149,53 @@ class DOMNode {
       }
     );
 
-    (this.node.style as any)[parsedName] = value;
+    (this.currentNode.style as any)[parsedName] = value;
     return this;
   }
 
   /**
-   * Append a new child element to the current node.
+   * Write the text to the current node
+   * @param {string} value - The text to be written in the current node.
+   * @returns {DOMNode} - The current DOMNode instance.
+   */
+  public setText(value: string): DOMNode {
+    this.currentNode.textContent = value;
+    return this;
+  }
+
+  /**
+   * Append a new child element in the current node or to its child.
    * @param {string} htmlTag - The HTML tag name for creating a new child element.
+   * @param {string} isGrandChild - Whether the child is a grand child of the current node, otherwise a direct descendant.
    * @returns {DOMNode} - The newly appended child element as a DOMNode instance.
    */
-  public append(htmlTag: string): DOMNode {
+  public append(htmlTag: string, isGrandChild: boolean = false): DOMNode {
     const childNode = new DOMNode(htmlTag);
-    this.node.appendChild(childNode.node);
-    return childNode;
+    if (isGrandChild) {
+      this.rootNode.lastElementChild?.append(childNode.rootNode);
+    } else {
+      this.rootNode.append(childNode.rootNode);
+    }
+    this.currentNode = childNode.rootNode;
+    return this;
+  }
+
+
+  /**
+ * Insert a new child element before a specified existing child element using a CSS selector.
+ * @param {string} htmlTag - The HTML tag name for creating the new child element.
+ * @param {string} cssSelector - The CSS selector to select the existing child element before which the new child will be inserted.
+ * @returns {DOMNode} - The current DOMNode instance.
+ * @throws {Error} Will throw an error if the specified CSS selector does not match any existing child element.
+ */
+  public insert(htmlTag: string, cssSelector: string): DOMNode {
+    const selectedNode = this.currentNode.querySelector(cssSelector);
+    if (!selectedNode) {
+      throw new Error("Invalid child selected, check if it exists");
+    }
+    const childNode = new DOMNode(htmlTag);
+    this.currentNode.insertBefore(selectedNode, childNode.rootNode);
+    return this;
   }
 }
 
