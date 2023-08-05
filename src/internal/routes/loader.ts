@@ -1,20 +1,15 @@
-import addNavigationBar from "../templates/navigation-bar";
-import colorNavigationBar from "../events/navigation-events";
+import createNavigationBar from "../templates/navigation-bar";
 
 /**
  * Adds the content when the HTML starts to be loaded.
  */
 function loader(): void {
   // Add the buttons of the navigation bar
-  const navConatiner: HTMLElement | null =
-    null || document.querySelector(".controls");
-  navConatiner!.append(...addNavigationBar());
-  navConatiner?.addEventListener("click", colorNavigationBar);
-
+  document.body.append(createNavigationBar());
   // Add the acction of the light/dark theme
-  const themeButton: HTMLElement | null =
-    null || document.querySelector(".theme-btn");
-  themeButton!.addEventListener("click", () =>
+  const nightButton: HTMLDivElement | null =
+    document?.querySelector(".theme-btn");
+  nightButton?.addEventListener("click", () =>
     document.body.classList.toggle("light-mode")
   );
 }

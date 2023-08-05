@@ -1,14 +1,20 @@
-import coloringButton from "../utils/coloringbutton";
-
 /**
  * Color the navigation bar button.
  */
 function colorNavigationBarButton(event: Event): void {
   const tg = event.target as HTMLElement;
-  const divButton = tg.closest(".control");
-  const id: string | null = divButton?.getAttribute("data-id") || "";
+  const buttonSelected = tg.closest(".control");
+  const id: string | null = buttonSelected?.getAttribute("data-id") || "";
+  const buttons = buttonSelected?.parentElement?.children;
 
-  coloringButton(id);
+  for (let index = 0; index < buttons!.length; index++) {
+    const button = buttons![index];
+    if (button.classList.contains("active-btn")) {
+      button.classList.remove("active-btn");
+      break;
+    }
+  }
+  buttonSelected?.classList.add("active-btn");
 }
 
 export default colorNavigationBarButton;

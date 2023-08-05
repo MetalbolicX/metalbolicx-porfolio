@@ -1,11 +1,12 @@
 import DOMNode from "../../pkg/node/node";
 import { sections, navIcons } from "../utils/constants";
+import colorNavigationBar from "../events/navigation-events";
 
 /**
  * Creates the buttons for the navigation bar.
  * @returns The array of HTML elements buttons for the navigation bar.
  */
-function addNavigationBar(): HTMLElement[] {
+function createNavigationBar(): HTMLElement {
   // Find the section to color the bottom of the navigation bar.
   let sectionTocolor: number = sections.findIndex((section: string) =>
     window.location.pathname.includes(section)
@@ -32,7 +33,13 @@ function addNavigationBar(): HTMLElement[] {
       return button.getNode;
     }
   );
-  return buttons;
+
+  const navigatioBar: DOMNode = new DOMNode("nav")
+    .setAttr("class", "controls");
+  navigatioBar.getNode.append(...buttons);
+  navigatioBar.on("click", colorNavigationBar);
+
+  return navigatioBar.getNode;
 }
 
-export default addNavigationBar;
+export default createNavigationBar;
