@@ -25,10 +25,12 @@ Welcome to my personal portfolio, built using the architecture of a single-page 
 
 ## Features
 
+- [x] Addition to new nodes to the DOM similar to the use of **[D3.js](https://d3js.org/)**.
+- [x] Basic validation to the addition of new nodes in the DOM when `innerHTML` is used against XSS attacks. **Be careful** if your application needs more ciber security levels.
+- [x] It can add **event listeners** to the new DOM nodes created.
 - [x] The router has the ability to take advantage of the **browser's navigation history**.
 - [x] The routes of the web page can be validated using **regular expressions**.
 - [x] It can handle a not existing route with a **404 error page**.
-- [x] It can add **event listeners** to the DOM of a given page.
 
 # Usage
 
@@ -65,16 +67,13 @@ import {
  * Create the HTML section element of contact page.
  */
 async function createContact(): Promise<HTMLElement> {
-  const contactPage: Page = new Page("main", createContactView(), [
-    "contact",
-    "container",
-    "active",
-  ]);
-  contactPage.addListener(".contact-icon", "mouseover", showTooltipIcon);
-  contactPage.addListener(".contact-icon", "mouseout", hideTooltipIcon);
-  contactPage.addListener("form", "submit", checkFormSubmit);
+  const contactPage: Page = new Page("main")
+    .setHTML(createContactView())
+    .setAttr("class", "contact.container.active")
+    .addListenerToDescendant(".contact-icon", "mouseover", showTooltipIcon)
+    .addListenerToDescendant(".contact-icon", "mouseout", hideTooltipIcon)
+    .addListenerToDescendant("form", "submit", checkFormSubmit);
   return contactPage.getNode;
-
 }
 
 export default createContact;
@@ -91,7 +90,7 @@ import creatContact from "../pages/contact";
 const routes: Routes = {
     // Create the user web page depending on data of a given user
     "/contact": createContact;
-};
+} as const;
  ```
 
 # Contributing
