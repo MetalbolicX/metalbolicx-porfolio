@@ -13,9 +13,9 @@ async function createContact(): Promise<HTMLElement> {
   const contactPage: Page = new Page("main")
     .setHTML(createContactView())
     .setAttr("class", "contact.container.active")
-    .addListenerToDescendant(".contact-icon", "mouseover", showTooltipIcon)
-    .addListenerToDescendant(".contact-icon", "mouseout", hideTooltipIcon)
-    .addListenerToDescendant("form", "submit", checkFormSubmit);
+    .addListener("mouseover", ".contact-icon", showTooltipIcon)
+    .addListener("mouseout", ".contact-icon", hideTooltipIcon)
+    .addListener("submit", "form", checkFormSubmit);
   return contactPage.getNode;
 }
 

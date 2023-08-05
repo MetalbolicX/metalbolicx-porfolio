@@ -78,7 +78,7 @@ class DOMNode {
    * @param {function} listener - The event listener function to be executed when the event occurs.
    * @returns {DOMNode} - The current DOMNode instance.
    */
-  public addListenerToNode(
+  public on(
     eventName: string,
     listener: (e: Event) => void
   ): DOMNode {
@@ -94,9 +94,9 @@ class DOMNode {
    * @returns {DOMNode} - The current DOMNode instance.
    * @throws {Error} Will throw an error if the CSS selector does not match any element.
    */
-  public addListenerToDescendant(
-    tagSelector: string,
+  public addListener(
     eventName: string,
+    tagSelector: string,
     listener: (e: Event) => void
   ): DOMNode {
     const descendant: HTMLElement | null = this.currentNode.querySelector(tagSelector);
@@ -166,7 +166,7 @@ class DOMNode {
   /**
    * Append a new child element in the current node or to its child.
    * @param {string} htmlTag - The HTML tag name for creating a new child element.
-   * @param {string} isGrandChild - Whether the child is a grand child of the current node, otherwise a direct descendant.
+   * @param {string} isGrandChild - Whether the child is a grand child of the current node, otherwise a direct descendant. By default is a direct descendant of the current node.
    * @returns {DOMNode} - The newly appended child element as a DOMNode instance.
    */
   public append(htmlTag: string, isGrandChild: boolean = false): DOMNode {

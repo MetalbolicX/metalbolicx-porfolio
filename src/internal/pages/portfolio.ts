@@ -9,7 +9,7 @@ async function createPortfolio(): Promise<HTMLElement> {
   const portfolioPage: Page = new Page("main")
     .setHTML(createPortfolioView())
     .setAttr("class", "portfolio.container.active")
-    .addListenerToDescendant(".portfolios", "mouseover", showDetails);
+    .addListener("mouseover", ".portfolios", showDetails);
   return portfolioPage.getNode;
 }
 
