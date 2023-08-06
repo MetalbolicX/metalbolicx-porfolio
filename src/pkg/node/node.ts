@@ -5,6 +5,7 @@ class DOMNode {
   private htmlTag: string = "";
   private rootNode: HTMLElement;
   private currentNode: HTMLElement;
+  private currentLevel: number = 1;
 
   /**
    * Create a new DOMNode instance.
@@ -46,6 +47,15 @@ class DOMNode {
    */
   public get getNode(): HTMLElement {
     return this.rootNode;
+  }
+
+  /**
+   * How many level of descendants has the root node.
+   * @type {number}
+   * @readonly
+   */
+  public get getCurrentLevel(): number {
+    return this.currentLevel;
   }
 
   /**
@@ -177,6 +187,7 @@ class DOMNode {
       this.rootNode.append(childNode.rootNode);
     }
     this.currentNode = childNode.rootNode;
+    this.currentLevel++;
     return this;
   }
 
@@ -195,6 +206,7 @@ class DOMNode {
     }
     const childNode = new DOMNode(htmlTag);
     this.currentNode.insertBefore(selectedNode, childNode.rootNode);
+    this.currentLevel++;
     return this;
   }
 }

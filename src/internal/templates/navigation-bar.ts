@@ -30,6 +30,7 @@ function createNavigationBar(): HTMLElement {
         .setAttr("href", `#/${section}/`)
         .append("i", true)
         .setAttr("class", `fas.fa-${navIcons.at(index)}`)
+        console.log(button.getCurrentLevel);
       return button.getNode;
     }
   );
@@ -38,7 +39,6 @@ function createNavigationBar(): HTMLElement {
     .setAttr("class", "controls")
     .on("click", colorNavigationBar);
   navigatioBar.getNode.append(...buttons);
-
   return navigatioBar.getNode;
 }
 
