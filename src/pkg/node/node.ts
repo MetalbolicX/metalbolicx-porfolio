@@ -5,7 +5,6 @@ class DOMNode {
   private htmlTag: string = "";
   private rootNode: HTMLElement;
   private currentNode: HTMLElement;
-  private lowestDepth: number = 1;
 
   /**
    * Create a new DOMNode instance.
@@ -47,15 +46,6 @@ class DOMNode {
    */
   public get getNode(): HTMLElement {
     return this.rootNode;
-  }
-
-  /**
-   * How many level of descendants has the root node.
-   * @type {number}
-   * @readonly
-   */
-  public get getLowestDepth(): number {
-    return this.lowestDepth;
   }
 
   /**
@@ -185,11 +175,9 @@ class DOMNode {
     if (!this.rootNode.childElementCount && !isGrandChild) {
       // Apending the first child
       this.rootNode.append(childNode.rootNode);
-      this.lowestDepth++;
     } else if (isGrandChild && this.rootNode.childElementCount > 0) {
       // Appending a grand child
       this.rootNode.lastElementChild?.append(childNode.rootNode);
-      this.lowestDepth++;
     } else {
       this.rootNode.append(childNode.rootNode);
     }
