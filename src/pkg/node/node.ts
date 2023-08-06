@@ -5,7 +5,7 @@ class DOMNode {
   private htmlTag: string = "";
   private rootNode: HTMLElement;
   private currentNode: HTMLElement;
-  private currentLevel: number = 1;
+  private lowestDepth: number = 1;
 
   /**
    * Create a new DOMNode instance.
@@ -54,8 +54,8 @@ class DOMNode {
    * @type {number}
    * @readonly
    */
-  public get getCurrentLevel(): number {
-    return this.currentLevel;
+  public get getLowestDepth(): number {
+    return this.lowestDepth;
   }
 
   /**
@@ -181,32 +181,20 @@ class DOMNode {
    */
   public append(htmlTag: string, isGrandChild: boolean = false): DOMNode {
     const childNode = new DOMNode(htmlTag);
-    if (isGrandChild) {
+
+    if (!this.rootNode.childElementCount && !isGrandChild) {
+      // Apending the first child
+      this.rootNode.append(childNode.rootNode);
+      this.lowestDepth++;
+    } else if (isGrandChild && this.rootNode.childElementCount > 0) {
+      // Appending a grand child
       this.rootNode.lastElementChild?.append(childNode.rootNode);
+      this.lowestDepth++;
     } else {
       this.rootNode.append(childNode.rootNode);
     }
+
     this.currentNode = childNode.rootNode;
-    this.currentLevel++;
-    return this;
-  }
-
-
-  /**
- * Insert a new child element before a specified existing child element using a CSS selector.
- * @param {string} htmlTag - The HTML tag name for creating the new child element.
- * @param {string} cssSelector - The CSS selector to select the existing child element before which the new child will be inserted.
- * @returns {DOMNode} - The current DOMNode instance.
- * @throws {Error} Will throw an error if the specified CSS selector does not match any existing child element.
- */
-  public insert(htmlTag: string, cssSelector: string): DOMNode {
-    const selectedNode = this.currentNode.querySelector(cssSelector);
-    if (!selectedNode) {
-      throw new Error("Invalid child selected, check if it exists");
-    }
-    const childNode = new DOMNode(htmlTag);
-    this.currentNode.insertBefore(selectedNode, childNode.rootNode);
-    this.currentLevel++;
     return this;
   }
 }
