@@ -5,6 +5,7 @@ class DOMNode {
   private htmlTag: string = "";
   private rootNode: HTMLElement;
   private currentNode: HTMLElement;
+  private depthLevel: number = 0;
 
   /**
    * Create a new DOMNode instance.
@@ -46,6 +47,10 @@ class DOMNode {
    */
   public get getNode(): HTMLElement {
     return this.rootNode;
+  }
+
+  public get getDepthLevel(): number {
+    return this.depthLevel;
   }
 
   /**
@@ -171,17 +176,17 @@ class DOMNode {
    */
   public append(htmlTag: string, isGrandChild: boolean = false): DOMNode {
     const childNode = new DOMNode(htmlTag);
-
-    if (!this.rootNode.childElementCount && !isGrandChild) {
-      // Apending the first child
-      this.rootNode.append(childNode.rootNode);
-    } else if (isGrandChild && this.rootNode.childElementCount > 0) {
-      // Appending a grand child
-      this.rootNode.lastElementChild?.append(childNode.rootNode);
+    // First level down
+    if (!this.getDepthLevel) {
+      this.depthLevel++;
+    }
+    // Append to the first level or the depest level of the current node
+    if (isGrandChild) {
+      this.currentNode.append(childNode.rootNode);
+      this.depthLevel++;
     } else {
       this.rootNode.append(childNode.rootNode);
     }
-
     this.currentNode = childNode.rootNode;
     return this;
   }
