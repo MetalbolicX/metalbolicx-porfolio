@@ -49,8 +49,17 @@ class DOMNode {
     return this.rootNode;
   }
 
+  /**
+   * Get how many levels are from the root node and the lefts nodes.
+   * @type {HTMLElement}
+   * @readonly
+   */
   public get getDepthLevel(): number {
     return this.depthLevel;
+  }
+
+  public get getCurrentNode(): HTMLElement {
+    return this.currentNode;
   }
 
   /**
@@ -188,6 +197,18 @@ class DOMNode {
       this.rootNode.append(childNode.rootNode);
     }
     this.currentNode = childNode.rootNode;
+    return this;
+  }
+
+  /**
+   * Moves one level above the lefts nodes.
+   * @returns {DOMNode} The instamce of this DOMNode class.
+   */
+  public above(): DOMNode {
+    if (this.currentNode === this.rootNode) {
+      return this;
+    }
+    this.currentNode = this.currentNode.parentElement || this.rootNode;
     return this;
   }
 }
