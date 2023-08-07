@@ -7,7 +7,6 @@ class DOMNode {
   private currentNode: HTMLElement;
   private previousNode: HTMLElement;
   private nextNode: HTMLElement;
-  private depthLevel: number = 0;
 
   /**
    * Create a new DOMNode instance.
@@ -54,22 +53,28 @@ class DOMNode {
   }
 
   /**
-   * Get how many levels are from the root node and the lefts nodes.
+   * Get the current node level in the this DOM tree.
    * @type {HTMLElement}
    * @readonly
    */
-  public get getDepthLevel(): number {
-    return this.depthLevel;
-  }
-
   public get getCurrentNode(): HTMLElement {
     return this.currentNode;
   }
 
+  /**
+   * Get the previous node in the current level of this tree.
+   * @type {HTMLElement}
+   * @readonly
+   */
   public get getPreviousNode(): HTMLElement {
     return this.previousNode;
   }
 
+  /**
+   * Get the next node in the current level of this tree.
+   * @type {HTMLElement}
+   * @readonly
+   */
   public get getNextNode(): HTMLElement {
     return this.nextNode;
   }
@@ -195,17 +200,13 @@ class DOMNode {
    */
   public append(htmlTag: string, isGrandChild: boolean = false): DOMNode {
     const childNode = new DOMNode(htmlTag);
-    // First level down
-    if (!this.getDepthLevel) {
-      this.depthLevel++;
-    }
     // Append to the first level or the depest level of the current node
     if (isGrandChild) {
       this.currentNode.append(childNode.rootNode);
-      this.depthLevel++;
     } else {
       this.rootNode.append(childNode.rootNode);
     }
+
     this.currentNode = childNode.rootNode;
     this.previousNode = childNode.rootNode.parentElement || this.rootNode;
     this.nextNode = this.currentNode;
@@ -218,19 +219,10 @@ class DOMNode {
    * @returns {DOMNode} - The current DOMNode instance after moving.
    */
   public previous(levelToMove: number = 1): DOMNode {
-    while (levelToMove > 0 && levelToMove <= this.getDepthLevel) {
+    while (levelToMove > 0 && this.previousNode !== this.rootNode) {
       this.nextNode = this.currentNode;
       this.currentNode = this.previousNode;
       this.previousNode = this.currentNode.parentElement || this.rootNode;
-      levelToMove--;
-    }
-    return this;
-  }
-
-  public next(levelToMove: number = 1): DOMNode {
-    while (levelToMove > 0 && levelToMove <= this.getDepthLevel) {
-      this.previousNode = this.currentNode;
-      this.currentNode = this.nextNode;
       levelToMove--;
     }
     return this;

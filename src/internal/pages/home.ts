@@ -6,8 +6,8 @@ import createHomeView from "../views/home-view";
  */
 async function createHome(): Promise<HTMLElement> {
   const homePage: Page = new Page("main")
-    .setHTML(createHomeView())
-    .setAttr("class", "home.container.active");
+    .setAttr("class", "home.container.active")
+    .setHTML(createHomeView());
   return homePage.getNode;
 }
 
