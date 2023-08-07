@@ -201,14 +201,15 @@ class DOMNode {
   }
 
   /**
-   * Moves one level above the lefts nodes.
-   * @returns {DOMNode} The instamce of this DOMNode class.
-   */
-  public above(): DOMNode {
-    if (this.currentNode === this.rootNode) {
-      return this;
+ * Move the current node above to a higher ancestor node within the hierarchy by a specified number of levels.
+ * @param {number} levelToMove - The number of ancestor levels to move above. Default is 1.
+ * @returns {DOMNode} - The current DOMNode instance after moving.
+ */
+  public above(levelToMove: number = 1): DOMNode {
+    while (levelToMove > 0 && levelToMove <= this.getDepthLevel) {
+      this.currentNode = this.currentNode.parentElement || this.rootNode;
+      levelToMove--;
     }
-    this.currentNode = this.currentNode.parentElement || this.rootNode;
     return this;
   }
 }
