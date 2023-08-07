@@ -5,6 +5,8 @@ class DOMNode {
   private htmlTag: string = "";
   private rootNode: HTMLElement;
   private currentNode: HTMLElement;
+  private previousNode: HTMLElement;
+  private nextNode: HTMLElement;
   private depthLevel: number = 0;
 
   /**
@@ -19,6 +21,8 @@ class DOMNode {
       throw new Error(`The ${this.htmlTag} is not a valid HTML element`);
     }
     this.currentNode = this.rootNode;
+    this.previousNode = this.rootNode;
+    this.nextNode = this.rootNode;
   }
 
   /**
@@ -62,6 +66,14 @@ class DOMNode {
     return this.currentNode;
   }
 
+  public get getPreviousNode(): HTMLElement {
+    return this.previousNode;
+  }
+
+  public get getNextNode(): HTMLElement {
+    return this.nextNode;
+  }
+
   /**
    * Set the HTML content of the page.
    * @param {string} htmlView - The HTML content.
@@ -92,10 +104,7 @@ class DOMNode {
    * @param {function} listener - The event listener function to be executed when the event occurs.
    * @returns {DOMNode} - The current DOMNode instance.
    */
-  public on(
-    eventName: string,
-    listener: (e: Event) => void
-  ): DOMNode {
+  public on(eventName: string, listener: (e: Event) => void): DOMNode {
     this.currentNode.addEventListener(eventName, listener);
     return this;
   }
@@ -113,7 +122,8 @@ class DOMNode {
     tagSelector: string,
     listener: (e: Event) => void
   ): DOMNode {
-    const descendant: HTMLElement | null = this.currentNode.querySelector(tagSelector);
+    const descendant: HTMLElement | null =
+      this.currentNode.querySelector(tagSelector);
     if (!descendant) {
       throw new Error(
         "The CSS selector does not match any descendant element."
@@ -197,17 +207,30 @@ class DOMNode {
       this.rootNode.append(childNode.rootNode);
     }
     this.currentNode = childNode.rootNode;
+    this.previousNode = childNode.rootNode.parentElement || this.rootNode;
+    this.nextNode = this.currentNode;
     return this;
   }
 
   /**
- * Move the current node above to a higher ancestor node within the hierarchy by a specified number of levels.
- * @param {number} levelToMove - The number of ancestor levels to move above. Default is 1.
- * @returns {DOMNode} - The current DOMNode instance after moving.
- */
-  public above(levelToMove: number = 1): DOMNode {
+   * Move the current node above to a higher ancestor node within the hierarchy by a specified number of levels.
+   * @param {number} levelToMove - The number of ancestor levels to move above. Default is 1.
+   * @returns {DOMNode} - The current DOMNode instance after moving.
+   */
+  public previous(levelToMove: number = 1): DOMNode {
     while (levelToMove > 0 && levelToMove <= this.getDepthLevel) {
-      this.currentNode = this.currentNode.parentElement || this.rootNode;
+      this.nextNode = this.currentNode;
+      this.currentNode = this.previousNode;
+      this.previousNode = this.currentNode.parentElement || this.rootNode;
+      levelToMove--;
+    }
+    return this;
+  }
+
+  public next(levelToMove: number = 1): DOMNode {
+    while (levelToMove > 0 && levelToMove <= this.getDepthLevel) {
+      this.previousNode = this.currentNode;
+      this.currentNode = this.nextNode;
       levelToMove--;
     }
     return this;

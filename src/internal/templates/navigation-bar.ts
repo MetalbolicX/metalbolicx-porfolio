@@ -29,7 +29,12 @@ function createNavigationBar(): HTMLElement {
         .append("a")
         .setAttr("href", `#/${section}/`)
         .append("i", true)
-        .setAttr("class", `fas.fa-${navIcons.at(index)}`);
+        .setAttr("class", `fas.fa-${navIcons.at(index)}`)
+        .previous()
+        .next();
+      console.log(button.getNextNode);
+      console.log(button.getCurrentNode);
+      console.log(button.getPreviousNode);
       return button.getNode;
     }
   );
