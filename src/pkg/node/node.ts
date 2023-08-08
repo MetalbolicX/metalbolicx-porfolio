@@ -6,7 +6,6 @@ class DOMNode {
   private rootNode: HTMLElement;
   private currentNode: HTMLElement;
   private previousNode: HTMLElement;
-  private nextNode: HTMLElement;
 
   /**
    * Create a new DOMNode instance.
@@ -21,7 +20,6 @@ class DOMNode {
     }
     this.currentNode = this.rootNode;
     this.previousNode = this.rootNode;
-    this.nextNode = this.rootNode;
   }
 
   /**
@@ -68,15 +66,6 @@ class DOMNode {
    */
   public get getPreviousNode(): HTMLElement {
     return this.previousNode;
-  }
-
-  /**
-   * Get the next node in the current level of this tree.
-   * @type {HTMLElement}
-   * @readonly
-   */
-  public get getNextNode(): HTMLElement {
-    return this.nextNode;
   }
 
   /**
@@ -209,7 +198,6 @@ class DOMNode {
 
     this.currentNode = childNode.rootNode;
     this.previousNode = childNode.rootNode.parentElement || this.rootNode;
-    this.nextNode = this.currentNode;
     return this;
   }
 
@@ -220,7 +208,6 @@ class DOMNode {
    */
   public previous(levelToMove: number = 1): DOMNode {
     while (levelToMove > 0 && this.previousNode !== this.rootNode) {
-      this.nextNode = this.currentNode;
       this.currentNode = this.previousNode;
       this.previousNode = this.currentNode.parentElement || this.rootNode;
       levelToMove--;
