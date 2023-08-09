@@ -26,7 +26,7 @@ function createNavigationBar(): HTMLElement {
         .append("span")
         .setAttr("class", "page-name")
         .setText(section)
-        .append("a")
+        .append("a", false)
         .setAttr("href", `#/${section}/`)
         .append("i", true)
         .setAttr("class", `fas.fa-${navIcons.at(index)}`);
