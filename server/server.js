@@ -46,19 +46,19 @@ class StaticFileServer {
   #populateFileCache() {
     const fileCache = fs
       .readdirSync(this.staticPath)
-      .reduce((aggregated, fileName) => {
-        const [name, extension] = fileName.split(".");
+      .reduce((aggregated, file) => {
+        const [filename, fileextension] = file.split(".");
         // Check whether if the file extension exists otherwise create an empty array.
-        const fileNames = aggregated[extension] || [];
-        const fullPath = `${path.join(this.staticPath, name)}.${extension}`;
+        const files = aggregated[fileextension] || [];
+        const fullPath = `${path.join(this.staticPath, filename)}.${fileextension}`;
         try {
-          const fileContent = fs.readFileSync(fullPath, "utf8");
+          const filecontent = fs.readFileSync(fullPath, "utf8");
           return {
             ...aggregated,
-            [extension]: [
+            [fileextension]: [
               // Create a list of object for each file and its content
-              ...fileNames,
-              { filename: name, filecontent: fileContent },
+              ...files,
+              { filename, filecontent },
             ],
           };
         } catch (err) {
