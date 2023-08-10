@@ -8,6 +8,7 @@ class StaticFileServer {
   /**@type {string} */
   #staticPath = "";
   #server;
+  #fileCache = {}; // Cache to store file content
   /**
    * Creates a new instance of the StaticFileServer.
    * @param {number} port The number of port to listen.
@@ -18,6 +19,7 @@ class StaticFileServer {
     this.#staticPath = staticPath;
 
     this.#server = http.createServer(this.#handleRequest.bind(this));
+    this.#populateFileCache();
   }
 
   get port() {
@@ -39,65 +41,90 @@ class StaticFileServer {
   }
 
   /**
-   * Handles incoming HTTP requests by serving static files.
+   * Populate the file cache by reading file contents on server initialization.
+   */
+  #populateFileCache() {
+    const fileCache = fs
+      .readdirSync(this.staticPath)
+      .reduce((aggregated, fileName) => {
+        const [name, extension] = fileName.split(".");
+        const fileNames = aggregated[extension] || [];
+        const fullPath = `${path.join(this.staticPath, name)}.${extension}`;
+        try {
+          const fileContent = fs.readFileSync(fullPath, "utf8");
+          return {
+            ...aggregated,
+            [extension]: [
+              ...fileNames,
+              { filename: name, filecontent: fileContent },
+            ],
+          };
+        } catch (err) {
+          throw new Error(`Error reading file ${fullPath}: ${err.message}`);
+        }
+      }, {});
+
+    this.#fileCache = { ...fileCache };
+  }
+
+  /**
+   * Handles incoming HTTP requests by serving static files from cache.
    *
    * @param {http.IncomingMessage} req - The HTTP request object.
    * @param {http.ServerResponse} res - The HTTP response object.
    */
   #handleRequest(req, res) {
-    /**
-     * Parse the URL to extract the requested file path or default to "index.html".
-     * @type {string}
-     */
     const parsedUrl =
       req.url
         ?.split("/")
-        .find((str) => new RegExp(/\w+\.[a-z]{1,5}/g).test(str)) ||
+        .find((str) => new RegExp(/\w+\.[a-zA-Z]{1,5}/gi).test(str)) ||
       "index.html";
 
     console.log(`GET: ${parsedUrl} at ${new Date()}`);
     console.log("----------");
 
-    /**
-     * Construct the absolute file path to the requested resource.
-     * @type {string}
-     */
-    const filePath = path.join(this.staticPath, `/${parsedUrl}`);
+    const [fileName, fileExtension] = parsedUrl.split(".");
+    const cachedContent = this.#fileCache[fileExtension].find(
+      (file) => file.filename === fileName
+    );
 
-    /**
-     * Determine the content type of the requested file.
-     * @type {string}
-     */
-    const contentType = this.#getContentType(filePath);
+    if (cachedContent) {
+      const contentType = this.#getContentType(fileExtension);
+      res.writeHead(200, { "Content-Type": contentType });
+      res.end(cachedContent.filecontent, "utf-8");
+    } else {
+      const filePath = path.join(this.staticPath, parsedUrl);
+      const contentType = this.#getContentType(filePath);
 
-    fs.readFile(filePath, (err, content) => {
-      if (err) {
-        if (err.code === "ENOENT") {
-          res.writeHead(404, { "Content-Type": "text/plain" });
-          res.end("File not found");
+      fs.readFile(filePath, (err, content) => {
+        if (err) {
+          if (err.code === "ENOENT") {
+            res.writeHead(404, { "Content-Type": "text/plain" });
+            res.end("File not found");
+          } else {
+            res.writeHead(500, { "Content-Type": "text/plain" });
+            res.end("Server error");
+          }
         } else {
-          res.writeHead(500, { "Content-Type": "text/plain" });
-          res.end("Server error");
+          this.#fileCache[parsedUrl] = content; // Cache the content
+          res.writeHead(200, { "Content-Type": contentType });
+          res.end(content, "utf-8");
         }
-      } else {
-        res.writeHead(200, { "Content-Type": contentType });
-        res.end(content, "utf-8");
-      }
-    });
+      });
+    }
   }
 
   /**
    * Set the content type to be served for the header.
-   * @param {string} filePath The paht for the file to be served.
+   * @param {string} fileExtension The extension of the file to be served.
    * @returns {string} The content type tbe server.
    */
-  #getContentType(filePath) {
+  #getContentType(fileExtension) {
     const contentsTypes = {
-      ".html": "text/html",
-      ".css": "text/css",
-      ".js": "text/javascript",
+      html: "text/html",
+      css: "text/css",
+      js: "text/javascript",
     };
-    const fileExtension = path.extname(filePath);
     return contentsTypes[fileExtension] || "text/plain";
   }
 }
