@@ -48,13 +48,14 @@ class StaticFileServer {
       .readdirSync(this.staticPath)
       .reduce((aggregated, fileName) => {
         const [name, extension] = fileName.split(".");
+        // Check whether if the file extension exists otherwise create an empty array.
         const fileNames = aggregated[extension] || [];
         const fullPath = `${path.join(this.staticPath, name)}.${extension}`;
         try {
           const fileContent = fs.readFileSync(fullPath, "utf8");
           return {
             ...aggregated,
-            [extension]: [
+            [extension]: [ // Create a list of object for each file and its content
               ...fileNames,
               { filename: name, filecontent: fileContent },
             ],
